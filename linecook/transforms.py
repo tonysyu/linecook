@@ -7,15 +7,17 @@ from __future__ import unicode_literals
 
 import functools
 import os
-import re
 import shlex
 
 from termcolor import colored
+
+from .parsers import resolve_pattern
 
 
 def text_tranform(func):
     @functools.wraps(func)
     def wrapped(pattern, *args, **kwargs):
+        pattern = resolve_pattern(pattern)
         def transform(string):
             return func(string, pattern, *args, **kwargs)
         return transform
@@ -24,18 +26,25 @@ def text_tranform(func):
 
 @text_tranform
 def filter_line(string, pattern):
-    pattern = re.compile(pattern)
     match = pattern.search(string)
     return None if match else string
 
 
 @text_tranform
 def replace_text(string, pattern, replacement):
-    pattern = re.compile(pattern)
     return pattern.sub(replacement, string)
 
 
 def create_color_replacement(*color_args):
+    """Return colore replacement function used as argument to `re.sub`.
+
+    `re.sub` accepts a function for string replacement, where the match object
+    is passed in as the only argument.
+
+    Args:
+        *color_args (list(str)): Color arguments matching those expected by
+            `termcolor.colored`.
+    """
     def color_replacement(match_string):
         if hasattr(match_string, 'group'):
             match_string = match_string.group()

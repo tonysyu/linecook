@@ -14,6 +14,9 @@ class TestDeleteText:
     def test_delete_regex(self):
         assert delete_text(r'\bban\b')('ban banish') == ' banish'
 
+    def test_delete_regex_with_word_prefix(self):
+        assert delete_text(r'w:ban')('ban banish') == ' banish'
+
     def test_not_deleted(self):
         assert delete_text(r'\bban\b')('banish') == 'banish'
 
