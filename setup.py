@@ -56,6 +56,7 @@ setup(
         'coverage',
         'flake8',
         'pytest',
+        'pytest-cov',
     ],
     package_data={},
     entry_points={
