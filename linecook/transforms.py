@@ -14,6 +14,27 @@ from .parsers import resolve_pattern
 
 
 def text_tranform(func):
+    """Decorator transforming a text transform into factory function.
+
+    This should be used to decorate functions that expect a string to transform
+    as the first argument and a match pattern as a second argument (see
+    `linecook.parsers.resolve_pattern` for details on match patterns). The
+    decorated function will be a factory function where the output is a
+    function that operates solely on text.
+
+    Examples:
+
+    >>> @text_tranform
+    ... def replace_text(string, pattern, replacement):
+    ...     return pattern.sub(replacement, string)
+    ...
+    >>> verbose_thanks = replace_text('Thx', 'Thanks')
+    >>> verbose_thanks('Thx for the memories')
+    'Thanks for the memories'
+    >>> verbose_thanks('You're the best! Thx!')
+    'You're the best! Thanks!'
+
+    """
     @functools.wraps(func)
     def wrapped(pattern, *args, **kwargs):
         pattern = resolve_pattern(pattern)
