@@ -1,5 +1,6 @@
 import re
 
+from . import patterns
 from .transforms import color_text
 
 
@@ -9,17 +10,13 @@ PYTHON_KEYWORDS = (
     r"else|import|pass|break|except|in|raise)"
 )
 
-SINGLE_QUOTED_STRINGS = "'[^']*'"
-DOUBLE_QUOTED_STRINGS = '"[^"]*"'
-STRINGS = '({}|{})'.format(SINGLE_QUOTED_STRINGS, DOUBLE_QUOTED_STRINGS)
-
 
 LINECOOK_CONFIG = {
     'recipes': {
         'default': [],
         'python': [
             color_text(PYTHON_KEYWORDS, 'red'),
-            color_text(STRINGS, 'yellow'),
+            color_text(patterns.strings, 'yellow'),
         ],
     },
 }
