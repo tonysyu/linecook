@@ -1,5 +1,3 @@
-import re
-
 from . import patterns
 from .transforms import color_text
 

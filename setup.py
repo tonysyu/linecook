@@ -57,6 +57,7 @@ setup(
         'flake8',
         'pytest',
         'pytest-cov',
+        'pytest-flake8',
     ],
     package_data={},
     entry_points={

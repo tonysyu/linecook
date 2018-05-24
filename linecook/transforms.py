@@ -7,7 +7,6 @@ from __future__ import unicode_literals
 
 import functools
 import os
-import shlex
 
 from termcolor import colored
 
@@ -18,9 +17,11 @@ def text_tranform(func):
     @functools.wraps(func)
     def wrapped(pattern, *args, **kwargs):
         pattern = resolve_pattern(pattern)
+
         def transform(string):
             return func(string, pattern, *args, **kwargs)
         return transform
+
     return wrapped
 
 
