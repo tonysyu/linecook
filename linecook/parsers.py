@@ -35,7 +35,7 @@ REGEX_FORMATTERS.update({
 })
 
 
-def resolve_pattern(pattern):
+def resolve_match_pattern(pattern):
     if isinstance(pattern, re._pattern_type):
         return pattern
 
