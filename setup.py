@@ -58,6 +58,7 @@ setup(
         'pytest',
         'pytest-cov',
         'pytest-flake8',
+        'pytest-sugar',
     ],
     package_data={},
     entry_points={
