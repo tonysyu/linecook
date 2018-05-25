@@ -143,3 +143,15 @@ include any configuration as a dictionary that's importable::
         ],
         ...
     }
+
+
+Development
+===========
+
+It turns out that breakpoints are a bit tricky when processing streamed input.
+A simple `pdb.set_trace()` will fail, so you'll need to try one of the
+solutions described on StackOverflow [1]_, [2]_ (`answer that worked for me`_).
+
+.. [1] https://stackoverflow.com/questions/17074177/how-to-debug-python-cli-that-takes-stdin
+.. [2] https://stackoverflow.com/questions/9178751/use-pdb-set-trace-in-a-script-that-reads-stdin-via-a-pipe
+.. _answer that worked for me: https://stackoverflow.com/a/48430325/260303
