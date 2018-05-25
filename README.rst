@@ -2,6 +2,8 @@
 linecook: Prepare lines of text for easy consumption
 ====================================================
 
+NOTE: Most of this is just planning, and doesn't actually work yet.
+
 This was originally designed as a tool to transform logging output into a form
 that I'd prefer to consume::
 
