@@ -6,29 +6,45 @@ import re
 
 TYPE_PREFIX_SEPARATOR = ':'
 
+REGEX_WRAPPERS = {
+    'exact': r'^{}$',
+    'word': r'\b{}\b',
+}
 
-def create_regex_factory(format_string, flags=0):
+
+def create_regex_factory(format_string=None, regex_type=None,
+                         ignore_case=False):
     """Return a `create_regex` function that compiles a pattern to a regex."""
-    def create_regex(pattern):
-        return re.compile(format_string.format(pattern), flags=flags)
+    if regex_type:
+        format_string = REGEX_WRAPPERS.get(regex_type)
+        if not format_string:
+            raise KeyError("Unknown regex wrapper: {}".format(regex_type))
+
+    flags = 0
+    if ignore_case:
+        flags |= re.IGNORECASE
+
+    if format_string:
+        def create_regex(pattern):
+            return re.compile(format_string.format(pattern), flags=flags)
+    else:
+        def create_regex(pattern):
+            return re.compile(pattern, flags=flags)
+
     return create_regex
 
 
 REGEX_FORMATTERS = {
-    'exact': create_regex_factory(r'^{}$'),
-    'iexact': create_regex_factory(r'^{}$', flags=re.IGNORECASE),
-    'substring': create_regex_factory(r'{}'),
-    'isubstring': create_regex_factory(r'{}', flags=re.IGNORECASE),
-    'word': create_regex_factory(r'\b{}\b'),
-    'iword': create_regex_factory(r'\b{}\b', flags=re.IGNORECASE),
+    'exact': create_regex_factory(regex_type='exact'),
+    'iexact': create_regex_factory(regex_type='exact', ignore_case=True),
+    'word': create_regex_factory(regex_type='word'),
+    'iword': create_regex_factory(regex_type='word', ignore_case=True),
 }
 
 REGEX_FORMATTERS.update({
     alias: REGEX_FORMATTERS[key] for alias, key in [
         ('x', 'exact'),
         ('xi', 'iexact'),
-        ('s', 'substring'),
-        ('si', 'isubstring'),
         ('w', 'word'),
         ('wi', 'iword'),
     ]
@@ -36,6 +52,7 @@ REGEX_FORMATTERS.update({
 
 
 def resolve_match_pattern(pattern):
+    """Return a compiled regex, parsing known regex shorthands."""
     if isinstance(pattern, re._pattern_type):
         return pattern
 

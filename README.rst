@@ -102,14 +102,17 @@ own::
             'TRANSFORM_NAME': <transform function>,
             'TRANSFORM_NAME': ['PACKAGE.MODULE.TRANSFORM_NAME', <MATCH_STRING>],
             'TRANSFORM_NAME': ['PACKAGE.MODULE.TRANSFORM_NAME', [ARG, ...], {'KEY': VALUE, ...}],
+            'TRANSFORM_NAME': ['PACKAGE.MODULE.TRANSFORM_NAME', [ARG, ...], {'KEY': VALUE, ...}],
+            'TRANSFORM_NAME': {
+                'filter': <MATCH_STRING>,
+                'then': <TRANSFORM>,
+                'else': <TRANSFORM>,
+            }
             ...
         },
         'recipes': {
             'NAME': [
-                'REPLACER_NAME',
-                'COLORIZER_NAME',
                 'TRANSFORM_NAME',
-                'RECIPE_NAME',
                 ...
             ],
         },
@@ -119,15 +122,11 @@ own::
 
 The `<MATCH_STRING>` above is a string that's prefixed with a match-string
 type, as described below:
-`'s:SUBSTRING'` (`'si:SUBSTRING_IGNORE_CASE'`):
-    An exact substring match (and a substring match that's case-insensitive).
 `'w:WORD'` (`'wi:WORD_IGNORE_CASE'`):
     An exact word match, which is basically a regex in the form of '\bWORD\b'.
 `'x:EXACT_STRING'` (`'xi:EXACT_STRING_IGNORE_CASE'`):
     An exact string match, which only matches if the entire string matches,
     which is basically a regex in the form of '^EXACT_STRING$'.
-`'r:REGEX'` (`'ri:REGEX_IGNORE_CASE'`):
-    Any regex pattern.
 `'p:PATTERN_NAME'`:
     A named version of any of the above match-strings.
 
