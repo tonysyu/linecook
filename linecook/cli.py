@@ -40,7 +40,7 @@ def main():
     args = parser.parse_args()
 
     recipe = LINECOOK_CONFIG['recipes'][args.recipe]
-    for line in args.text_stream.readlines():
+    for line in args.text_stream:
         # Newlines are usually part of the input line so set `end=''`.
         print(process_text(recipe, line), end='')
 
