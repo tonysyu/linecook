@@ -9,6 +9,8 @@ from __future__ import print_function, unicode_literals
 import argparse
 import sys
 
+from toolz.functoolz import compose
+
 from .default_config import LINECOOK_CONFIG
 
 
@@ -29,20 +31,16 @@ def build_parser():
     return parser
 
 
-def process_text(recipe, text):
-    for transform in recipe:
-        text = transform(text)
-    return text
-
 
 def main():
     parser = build_parser()
     args = parser.parse_args()
 
     recipe = LINECOOK_CONFIG['recipes'][args.recipe]
+    process_text = compose(*recipe)
     for line in args.text_stream:
         # Newlines are usually part of the input line so set `end=''`.
-        print(process_text(recipe, line), end='')
+        print(process_text(line), end='')
 
 
 if __name__ == '__main__':
