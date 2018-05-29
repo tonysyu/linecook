@@ -2,6 +2,8 @@
 linecook: Prepare lines of text for easy consumption
 ====================================================
 
+.. default-role:: literal
+
 .. image:: https://travis-ci.com/tonysyu/linecook.svg?branch=master
     :target: https://travis-ci.com/tonysyu/linecook
 
@@ -17,7 +19,7 @@ that I'd prefer to consume::
     I can haz cheezburger?
 
 `linecook` doesn't actually define way translate lines of text into lolcats,
-but you could easily define your own::
+but you could easily define your own:
 
 .. code-block:: python
 
@@ -50,7 +52,7 @@ filters:
     A filter matches lines of text, which are skipped.
 
 Obviously, this is an incredibly basic (and ridiculous) example. A more useful
-example colorizes lines of a log file using the following configuration::
+example colorizes lines of a log file using the following configuration:
 
 .. code-block:: python
 
@@ -84,7 +86,7 @@ recipes:
 
 While `linecook` comes with a handful of patterns and transforms
 to create your own recipes, the core idea is to make it easy to define your
-own::
+own:
 
 .. code-block:: python
 
@@ -143,7 +145,7 @@ type, as described below:
     A named version of any of the above match-strings.
 
 You don't just have to put all your configuration in one place. You can easily
-include any configuration as a dictionary that's importable::
+include any configuration as a dictionary that's importable:
 
 .. code-block:: python
 
