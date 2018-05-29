@@ -60,50 +60,50 @@ def match_pattern_transform(func):
 
 @match_pattern_transform
 def filter_line(string, match_pattern,
-                on_match_success=None,
-                on_match_failure=None):
+                on_match=None,
+                on_mismatch=None):
     """Return line filtered by match pattern.
 
-    If neither `on_match_success` or `on_match_failure` are given, return input
+    If neither `on_match` or `on_mismatch` are given, return input
     string if it matches the given pattern. Otherwise, the input string is
     passed to those callback functions and the output is returned.
 
     Args:
-        on_match_success (callable): A text transform that is called with the
-            input `string` if the string matches the `match_pattern`.
-        on_match_success (callable): A text transform that is called with the
-            input `string` if the string matches the `match_pattern`.
+        on_match (callable): A text transform that is called with the input
+            `string` if the string matches the `match_pattern`.
+        on_mismatch (callable): A text transform that is called with the input
+            `string` if the string does not matche the `match_pattern`.
     """
     match = match_pattern.search(string)
 
-    if not (on_match_success or on_match_failure):
+    if not (on_match or on_mismatch):
         return None if match else string
 
-    if match and on_match_success:
-        return on_match_success(string)
-    elif not match and on_match_failure:
-        return on_match_failure(string)
+    if match and on_match:
+        return on_match(string)
+    elif not match and on_mismatch:
+        return on_mismatch(string)
 
 
 @match_pattern_transform
 def partition(string, match_pattern,
-              on_match_success=None,
-              on_match_failure=None):
+              on_match=None,
+              on_mismatch=None):
     """Return line partitioned by pattern and re-joined after transformation.
 
     Args:
-        on_match_success (callable): A text transform that is called with each
+        on_match (callable): A text transform that is called with each
             matched substring.
-        on_match_success (callable): A text transform that is called with each
+        on_match (callable): A text transform that is called with each
             unmatched substring.
     """
-    on_match_success = on_match_success or identity
-    on_match_failure = on_match_failure or identity
+    on_match = on_match or identity
+    on_mismatch = on_mismatch or identity
 
-    matched_output = (on_match_success(x)
+    matched_output = (on_match(x)
                       for x in match_pattern.findall(string))
     # With capture groups, `re.split` returns matches, so those filter out.
-    unmatched_output = (on_match_failure(x)
+    unmatched_output = (on_mismatch(x)
                         for x in match_pattern.split(string)
                         if not match_pattern.match(x))
     # Split will return an empty string at the beginning if pattern is found
@@ -118,7 +118,7 @@ def replace_text(string, match_pattern, replacement):
 
 
 def create_color_replacement(*color_args):
-    """Return color replacement function used as argument to `re.sub`.
+    """Return color function used as argument to `re.sub`.
 
     `re.sub` accepts a function for string replacement, where the match object
     is passed in as the only argument.

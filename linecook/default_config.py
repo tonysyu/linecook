@@ -17,8 +17,8 @@ LINECOOK_CONFIG = {
         'python': [
             partition(
                 patterns.strings,
-                on_match_success=color_text('.*', 'yellow'),
-                on_match_failure=compose(
+                on_match=color_text('.*', 'yellow'),
+                on_mismatch=compose(
                     color_text(PYTHON_KEYWORDS, 'red'),
                     color_text(patterns.number, 'cyan'),
                 ),
