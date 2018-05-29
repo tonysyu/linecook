@@ -2,8 +2,6 @@
 linecook: Prepare lines of text for easy consumption
 ====================================================
 
-.. default-role:: literal
-
 .. image:: https://travis-ci.com/tonysyu/linecook.svg?branch=master
     :target: https://travis-ci.com/tonysyu/linecook
 
