@@ -26,7 +26,13 @@ def build_parser():
     parser.add_argument(
         'text_stream', default=sys.stdin, nargs='?',
         type=argparse.FileType('r'),
-        help="Text that will be transformed using the given recipe.",
+        help="Text stream that will be transformed using the given recipe.",
+    )
+    parser.add_argument(
+        '-t', '--text',
+        help="Text that will be transformed using the given recipe. "
+             "When given, this will override processing using `text_stream`. "
+             "Unlike `text_stream`, this plays nicely with `pdb`.",
     )
     return parser
 
@@ -39,6 +45,11 @@ def main():
     # Reverse recipe since we want transforms earlier in the list applied
     # first, but `toolz.functoolz.compose` runs it in the opposite direction.
     process_text = compose(*reversed(recipe))
+
+    if args.text:
+        print(process_text(args.text))
+        return
+
     for line in args.text_stream:
         # Newlines are usually part of the input line so set `end=''`.
         print(process_text(line), end='')

@@ -2,6 +2,8 @@
 linecook: Prepare lines of text for easy consumption
 ====================================================
 
+.. default-role:: literal
+
 .. image:: https://travis-ci.com/tonysyu/linecook.svg?branch=master
     :target: https://travis-ci.com/tonysyu/linecook
 
@@ -18,6 +20,8 @@ that I'd prefer to consume::
 
 `linecook` doesn't actually define way translate lines of text into lolcats,
 but you could easily define your own::
+
+.. code-block:: python
 
     {
         'replacers': {
@@ -50,6 +54,8 @@ filters:
 Obviously, this is an incredibly basic (and ridiculous) example. A more useful
 example colorizes lines of a log file using the following configuration::
 
+.. code-block:: python
+
     {
         'colorizers': {
             'info_color': [r'w:INFO', 'cyan'],
@@ -81,6 +87,8 @@ recipes:
 While `linecook` comes with a handful of patterns and transforms
 to create your own recipes, the core idea is to make it easy to define your
 own::
+
+.. code-block:: python
 
     {
         'patterns': {
@@ -132,12 +140,14 @@ type, as described below:
     An exact word match, which is basically a regex in the form of '\bWORD\b'.
 `'x:EXACT_STRING'` (`'xi:EXACT_STRING_IGNORE_CASE'`):
     An exact string match, which only matches if the entire string matches,
-    which is basically a regex in the form of '^EXACT_STRING$'.
+    which is basically a regex in the form of `'^EXACT_STRING$'`.
 `'p:PATTERN_NAME'`:
     A named version of any of the above match-strings.
 
 You don't just have to put all your configuration in one place. You can easily
 include any configuration as a dictionary that's importable::
+
+.. code-block:: python
 
     {
         'includes': [
@@ -156,6 +166,11 @@ Development
 It turns out that breakpoints are a bit tricky when processing streamed input.
 A simple `pdb.set_trace()` will fail, so you'll need to try one of the
 solutions described on StackOverflow [1]_, [2]_ (`answer that worked for me`_).
+
+Alternatively, if you can use a single line of text can be passed in to test
+an issue, you can use the `--text` (`-t`) flag instead of piping text:
+
+     linecook <RECIPE> --text 'Line of text to test'
 
 .. [1] https://stackoverflow.com/questions/17074177/how-to-debug-python-cli-that-takes-stdin
 .. [2] https://stackoverflow.com/questions/9178751/use-pdb-set-trace-in-a-script-that-reads-stdin-via-a-pipe
