@@ -2,6 +2,12 @@
 linecook: Prepare lines of text for easy consumption
 ====================================================
 
+.. image:: https://travis-ci.com/tonysyu/linecook.svg?branch=master
+    :target: https://travis-ci.com/tonysyu/linecook
+
+.. image:: https://codecov.io/gh/tonysyu/linecook/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/tonysyu/linecook
+
 NOTE: Most of this is just planning, and doesn't actually work yet.
 
 This was originally designed as a tool to transform logging output into a form
