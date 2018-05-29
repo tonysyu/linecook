@@ -4,6 +4,8 @@ python:
   - "2.7"
   - "3.6"
 install:
-    - pip install tox-travis
+    - pip install codecov
+script:
     - python setup.py test
-script: tox
+after_success:
+    - codecov
