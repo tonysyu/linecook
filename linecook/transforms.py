@@ -38,10 +38,10 @@ def match_pattern_transform(func):
     ...     return match_pattern.sub(replacement, string)
     ...
     >>> verbose_thanks = replace_text('Thx', 'Thanks')
-    >>> verbose_thanks('Thx for the memories')
-    'Thanks for the memories'
-    >>> verbose_thanks("You're the best! Thx!")
-    "You're the best! Thanks!"
+    >>> print(verbose_thanks('Thx for the memories'))
+    Thanks for the memories
+    >>> print(verbose_thanks("You're the best! Thx!"))
+    You're the best! Thanks!
 
     Note that the match pattern was defined as the second argument, but the
     resulting function is called with the pattern as the first argument. This
