@@ -118,7 +118,7 @@ def replace_text(string, match_pattern, replacement):
 
 
 def create_color_replacement(*color_args):
-    """Return colore replacement function used as argument to `re.sub`.
+    """Return color replacement function used as argument to `re.sub`.
 
     `re.sub` accepts a function for string replacement, where the match object
     is passed in as the only argument.
@@ -137,6 +137,26 @@ def create_color_replacement(*color_args):
 def color_text(match_pattern, *color_args):
     color_replacement = create_color_replacement(*color_args)
     return replace_text(match_pattern, replacement=color_replacement)
+
+
+class CountLines(object):
+    """Tranformation returning line of text with line count added."""
+
+    def __init__(self, line_template='{count_label} {line}',
+                 count_template='{count:>3}:', color_args=('grey',)):
+        self.count = 0
+        self.line_template = line_template
+        self.count_template = count_template
+        self.color_args = color_args
+
+    def __call__(self, line):
+        self.count += 1
+        count_label = self.count_template.format(count=self.count)
+        count_label = colored(count_label, *self.color_args, attrs=['bold'])
+        return self.line_template.format(count_label=count_label, line=line)
+
+    def reset(self):
+        self.count = 0
 
 
 delete_text = functools.partial(replace_text, replacement='')

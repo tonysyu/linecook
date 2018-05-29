@@ -1,7 +1,7 @@
 from toolz.functoolz import compose
 
 from . import patterns
-from .transforms import color_text, partition
+from .transforms import color_text, CountLines, partition
 
 
 PYTHON_KEYWORDS = (
@@ -23,6 +23,7 @@ LINECOOK_CONFIG = {
                     color_text(patterns.number, 'cyan'),
                 ),
             ),
+            CountLines(),
         ],
     },
 }
