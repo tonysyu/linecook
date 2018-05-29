@@ -1,5 +1,7 @@
+from toolz.functoolz import compose
+
 from . import patterns
-from .transforms import color_text
+from .transforms import color_text, partition
 
 
 PYTHON_KEYWORDS = (
@@ -13,8 +15,14 @@ LINECOOK_CONFIG = {
     'recipes': {
         'default': [],
         'python': [
-            color_text(PYTHON_KEYWORDS, 'red'),
-            color_text(patterns.strings, 'yellow'),
+            partition(
+                patterns.strings,
+                on_match_success=color_text('.*', 'yellow'),
+                on_match_failure=compose(
+                    color_text(PYTHON_KEYWORDS, 'red'),
+                    color_text(patterns.number, 'cyan'),
+                ),
+            ),
         ],
     },
 }

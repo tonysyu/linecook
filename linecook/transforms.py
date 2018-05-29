@@ -9,8 +9,14 @@ import functools
 import os
 
 from termcolor import colored
+from toolz import itertoolz
 
 from .parsers import resolve_match_pattern
+
+
+def identity(string):
+    """Return input string."""
+    return string
 
 
 def match_pattern_transform(func):
@@ -53,9 +59,57 @@ def match_pattern_transform(func):
 
 
 @match_pattern_transform
-def filter_line(string, match_pattern):
+def filter_line(string, match_pattern,
+                on_match_success=None,
+                on_match_failure=None):
+    """Return line filtered by match pattern.
+
+    If neither `on_match_success` or `on_match_failure` are given, return input
+    string if it matches the given pattern. Otherwise, the input string is
+    passed to those callback functions and the output is returned.
+
+    Args:
+        on_match_success (callable): A text transform that is called with the
+            input `string` if the string matches the `match_pattern`.
+        on_match_success (callable): A text transform that is called with the
+            input `string` if the string matches the `match_pattern`.
+    """
     match = match_pattern.search(string)
-    return None if match else string
+
+    if not (on_match_success or on_match_failure):
+        return None if match else string
+
+    if match and on_match_success:
+        return on_match_success(string)
+    elif not match and on_match_failure:
+        return on_match_failure(string)
+
+
+@match_pattern_transform
+def partition(string, match_pattern,
+              on_match_success=None,
+              on_match_failure=None):
+    """Return line partitioned by pattern and re-joined after transformation.
+
+    Args:
+        on_match_success (callable): A text transform that is called with each
+            matched substring.
+        on_match_success (callable): A text transform that is called with each
+            unmatched substring.
+    """
+    on_match_success = on_match_success or identity
+    on_match_failure = on_match_failure or identity
+
+    matched_output = (on_match_success(x)
+                      for x in match_pattern.findall(string))
+    # With capture groups, `re.split` returns matches, so those filter out.
+    unmatched_output = (on_match_failure(x)
+                        for x in match_pattern.split(string)
+                        if not match_pattern.match(x))
+    # Split will return an empty string at the beginning if pattern is found
+    # at the beginning of the input string.
+    substrings = itertoolz.interleave([unmatched_output, matched_output])
+    return ''.join(substrings)
 
 
 @match_pattern_transform

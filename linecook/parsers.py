@@ -3,12 +3,14 @@ from __future__ import print_function, unicode_literals
 
 import re
 
+from . import patterns
+
 
 TYPE_PREFIX_SEPARATOR = ':'
 
 REGEX_WRAPPERS = {
-    'exact': r'^{}$',
-    'word': r'\b{}\b',
+    'exact': patterns.exact_template,
+    'word': patterns.word_template,
 }
 
 
