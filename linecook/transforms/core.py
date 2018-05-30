@@ -10,13 +10,9 @@ import os
 
 from termcolor import colored
 from toolz import itertoolz
+from toolz.functoolz import identity
 
-from .parsers import resolve_match_pattern
-
-
-def identity(string):
-    """Return input string."""
-    return string
+from ..parsers import resolve_match_pattern
 
 
 def match_pattern_transform(func):
@@ -44,8 +40,7 @@ def match_pattern_transform(func):
     You're the best! Thanks!
 
     Note that the match pattern was defined as the second argument, but the
-    resulting function is called with the pattern as the first argument. This
-
+    resulting function is called with the pattern as the first argument.
     """
     @functools.wraps(func)
     def wrapped(match_pattern, *args, **kwargs):

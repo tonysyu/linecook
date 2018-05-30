@@ -168,7 +168,7 @@ A simple `pdb.set_trace()` will fail, so you'll need to try one of the
 solutions described on StackOverflow [1]_, [2]_ (`answer that worked for me`_).
 
 Alternatively, if you can use a single line of text can be passed in to test
-an issue, you can use the `--text` (`-t`) flag instead of piping text:
+an issue, you can use the `--text` (`-t`) flag instead of piping text::
 
      linecook <RECIPE> --text 'Line of text to test'
 
