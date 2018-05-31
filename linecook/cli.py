@@ -11,7 +11,7 @@ import sys
 
 from toolz.functoolz import compose
 
-from .default_config import LINECOOK_CONFIG
+from . import config
 
 
 def build_parser():
@@ -38,7 +38,8 @@ def build_parser():
 
 
 def run(args):
-    recipe = LINECOOK_CONFIG['recipes'][args.recipe]
+    linecook_config = config.load_config()
+    recipe = linecook_config.recipes[args.recipe]
     # Reverse recipe since we want transforms earlier in the list applied
     # first, but `toolz.functoolz.compose` runs it in the opposite direction.
     process_text = compose(*reversed(recipe))
