@@ -16,7 +16,7 @@ def load_config_file_from_path(path):
     try:
         module = imp.load_source('linecook.custom.config', path)
         return module.LINECOOK_CONFIG
-    except OSError:
+    except (IOError, OSError):
         return {}
 
 
