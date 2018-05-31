@@ -40,7 +40,7 @@ class TestRun:
         fake_print.assert_called_once_with(input_text)
 
     def test_stdin(self):
-        input_text = 'Hello world'
+        input_text = u'Hello world'
 
         with mock.patch.object(cli, 'sys') as fake_sys:
             fake_sys.stdin = StringIO(input_text)

@@ -1,5 +1,5 @@
 import imp
-from pathlib import Path
+from os.path import expanduser
 
 from . import default_config
 
@@ -14,14 +14,14 @@ class LinecookConfig(object):
 
 def load_config_file_from_path(path):
     try:
-        module = imp.load_source('linecook.custom.config', str(path))
+        module = imp.load_source('linecook.custom.config', path)
         return module.LINECOOK_CONFIG
-    except FileNotFoundError:
+    except OSError:
         return {}
 
 
 def load_config():
     return LinecookConfig([
         default_config.LINECOOK_CONFIG,
-        load_config_file_from_path(Path('~/.linecook/config.py').expanduser())
+        load_config_file_from_path(expanduser('~/.linecook/config.py'))
     ])

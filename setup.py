@@ -43,7 +43,6 @@ setup(
     keywords='console terminal logging parsing color sed termcolor',
     packages=find_packages(exclude=['tests*']),
     install_requires=[
-        'pathlib',
         'termcolor',
         'toolz',
     ],
