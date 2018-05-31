@@ -37,10 +37,7 @@ def build_parser():
     return parser
 
 
-def main():
-    parser = build_parser()
-    args = parser.parse_args()
-
+def run(args):
     recipe = LINECOOK_CONFIG['recipes'][args.recipe]
     # Reverse recipe since we want transforms earlier in the list applied
     # first, but `toolz.functoolz.compose` runs it in the opposite direction.
@@ -53,6 +50,12 @@ def main():
     for line in args.text_stream:
         # Newlines are usually part of the input line so set `end=''`.
         print(process_text(line), end='')
+
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+    run(args)
 
 
 if __name__ == '__main__':

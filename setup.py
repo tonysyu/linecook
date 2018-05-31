@@ -52,6 +52,7 @@ setup(
     tests_require=[
         'coverage',
         'flake8',
+        'mock',
         'pytest',
         'pytest-cov',
         'pytest-flake8',
