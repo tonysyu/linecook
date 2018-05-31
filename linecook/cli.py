@@ -48,9 +48,12 @@ def run(args):
         print(process_text(args.text))
         return
 
-    for line in args.text_stream:
-        # Newlines are usually part of the input line so set `end=''`.
-        print(process_text(line), end='')
+    try:
+        for line in args.text_stream:
+            # Newlines are usually part of the input line so set `end=''`.
+            print(process_text(line), end='')
+    except KeyboardInterrupt:
+        pass
 
 
 def main():
