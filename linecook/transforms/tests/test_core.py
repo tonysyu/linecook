@@ -7,7 +7,6 @@ from contextlib import contextmanager
 import mock
 
 from linecook.transforms import core
-from linecook.testing import IdentityMock
 
 
 class TestDeleteText:
@@ -67,14 +66,14 @@ class TestPartition:
         word('1 match 2')
 
         self.on_match.assert_called_once_with('match')
-        assert self.on_mismatch.calls == ['1 ', ' 2']
+        self.on_mismatch.assert_has_calls([mock.call('1 '), mock.call(' 2')])
 
     def test_partition_with_capture_group(self):
         word = self.create_partition_function('([A-z]+)')
         word('1 match 2')
 
         self.on_match.assert_called_once_with('match')
-        assert self.on_mismatch.calls == ['1 ', ' 2']
+        self.on_mismatch.assert_has_calls([mock.call('1 '), mock.call(' 2')])
 
     def test_partition_output(self):
         word = self.create_partition_function(
@@ -87,8 +86,8 @@ class TestPartition:
     def create_partition_function(self, match_pattern,
                                   success_template='{}',
                                   failure_template='{}'):
-        self.on_match = IdentityMock(template=success_template)
-        self.on_mismatch = IdentityMock(template=failure_template)
+        self.on_match = create_template_identity_mock(success_template)
+        self.on_mismatch = create_template_identity_mock(failure_template)
         return core.partition(match_pattern,
                               on_match=self.on_match,
                               on_mismatch=self.on_mismatch)
@@ -140,3 +139,10 @@ def mock_colored(module=core):
 
 def colored_text_identity(text, color=None, on_color=None, attrs=None):
     return text
+
+
+def create_template_identity_mock(template):
+    """Return function that returns function input wrapped in template."""
+    identity_mock = mock.Mock()
+    identity_mock.side_effect = template.format
+    return identity_mock
