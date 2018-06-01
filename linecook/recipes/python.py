@@ -1,3 +1,10 @@
+"""
+Example of linecook recipe for python code.
+
+This is a toy example: Actual syntax highlighting isn't possible since linecook
+doesn't (easily) store state between different lines, which prevents proper
+highlighting of things like multi-line strings.
+"""
 from toolz.functoolz import compose
 
 from .. import patterns
