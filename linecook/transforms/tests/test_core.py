@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 import os
 
+import mock
+
 import linecook.transforms as tf
 from linecook.testing import IdentityMock
 
@@ -24,8 +26,28 @@ class TestDeleteText:
 
 class TestFilterLine:
 
-    def test_filter_line(self):
+    def test_remove_line(self):
         assert tf.filter_line(r'\bremove\b')('remove this line') is None
+
+    def test_call_on_match(self):
+        on_match = mock.Mock()
+        on_mismatch = mock.Mock()
+        transform = tf.filter_line(r'match', on_match=on_match,
+                                   on_mismatch=on_mismatch)
+
+        transform('match this line')
+        on_match.assert_called_once_with('match this line')
+        on_mismatch.assert_not_called()
+
+    def test_call_on_mismatch(self):
+        on_match = mock.Mock()
+        on_mismatch = mock.Mock()
+        transform = tf.filter_line(r'mismatch', on_match=on_match,
+                                   on_mismatch=on_mismatch)
+
+        transform('line that does not match')
+        on_match.assert_not_called()
+        on_mismatch.assert_called_once_with('line that does not match')
 
 
 class TestSplitOn:
