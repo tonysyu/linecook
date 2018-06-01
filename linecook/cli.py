@@ -34,11 +34,22 @@ def build_parser():
              "When given, this will override processing using `text_stream`. "
              "Unlike `text_stream`, this plays nicely with `pdb`.",
     )
+    parser.add_argument(
+        '-l', '--list-recipes', action='store_true',
+        help="List all available recipes",
+    )
     return parser
 
 
 def run(args):
     linecook_config = config.load_config()
+
+    if args.list_recipes:
+        print("Available recipes:")
+        for recipe_name in linecook_config.recipes.keys():
+            print('- {}'.format(recipe_name))
+        return
+
     recipe = linecook_config.recipes[args.recipe]
     # Reverse recipe since we want transforms earlier in the list applied
     # first, but `toolz.functoolz.compose` runs it in the opposite direction.
