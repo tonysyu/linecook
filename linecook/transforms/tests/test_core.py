@@ -5,6 +5,7 @@ import os
 from contextlib import contextmanager
 
 import mock
+import termcolor
 
 from linecook.transforms import core
 
@@ -96,7 +97,7 @@ class TestPartition:
 class TestColorText:
 
     def test_color_text(self):
-        color_red = core.color_text('match words', 'red')
+        color_red = core.color_text('match words', color='red')
         assert (color_red('match words in this line') ==
                 ascii_red_text('match words') + ' in this line')
 
@@ -118,16 +119,8 @@ class TestCountLines:
             assert self.counter('second') == '1: second'
 
 
-def ascii_esc(value):
-    return '\x1b[{}'.format(value)
-
-
 def ascii_red_text(text):
-    return '{red}{text}{reset}'.format(
-        red=ascii_esc('31m'),
-        text=text,
-        reset=ascii_esc('0m'),
-    )
+    return termcolor.colored(text, color='red')
 
 
 @contextmanager
