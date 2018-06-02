@@ -2,6 +2,7 @@ import imp
 from os import path
 
 from . import default_config
+from .config_parsers import collect_recipes, collect_tranforms
 
 
 # File configuration order: Files later in the list override earlier ones.
@@ -15,9 +16,8 @@ CONFIG_SEARCH_PATHS = [
 class LineCookConfig(object):
 
     def __init__(self, config_dicts):
-        self.recipes = {}
-        for config in config_dicts:
-            self.recipes.update(config.get('recipes', {}))
+        self.transforms = collect_tranforms(config_dicts)
+        self.recipes = collect_recipes(config_dicts, self.transforms)
 
 
 def load_config_file_from_path(path):

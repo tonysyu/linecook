@@ -29,6 +29,7 @@ day = r'\d{2}'
 
 date = bounded_word(r'{}-{}-{}'.format(year, month, day))
 time = bounded_word(r'(\d{2}:\d{2}(:\d{2})?)')
+time_ms = bounded_word(r'\d{2}:\d{2}:\d{2}(,|.)\d{3}')
 
 log_level = bounded_word(any_pattern('TRACE', 'DEBUG', 'INFO', 'WARN',
                                      'ERROR', 'SEVERE', 'FATAL'))

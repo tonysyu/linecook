@@ -74,25 +74,44 @@ def replace_text(string, match_pattern, replacement):
     return match_pattern.sub(replacement, string)
 
 
-def create_color_replacement(*color_args):
+def _create_color_replacement(color=None, on_color=None, attrs=None):
     """Return color function used as argument to `re.sub`.
 
     `re.sub` accepts a function for string replacement, where the match object
     is passed in as the only argument.
 
     Args:
-        *color_args (list(str)): Color arguments matching those expected by
-            `termcolor.colored`.
+        color (str): Text color. Any of the following values
+            red, green, yellow, blue, magenta, cyan, white.
+        on_color (str): Background color. Any of the following values
+            on_red, on_green, on_yellow, on_blue, on_magenta, on_cyan, on_white
+
+        attrs (str): Text attributes. Any of the following values:
+            bold, dark, underline, blink, reverse, concealed.
     """
     def color_replacement(match_string):
         if hasattr(match_string, 'group'):
             match_string = match_string.group()
-        return colored(match_string, *color_args)
+        return colored(match_string, color=color,
+                       on_color=on_color, attrs=attrs)
     return color_replacement
 
 
-def color_text(match_pattern, *color_args):
-    color_replacement = create_color_replacement(*color_args)
+def color_text(match_pattern, color=None, on_color=None, attrs=None):
+    """Return color transform that returns colorized version of input string.
+
+    Args:
+        color (str): Text color. Any of the following values
+            red, green, yellow, blue, magenta, cyan, white.
+        on_color (str): Background color. Any of the following values
+            on_red, on_green, on_yellow, on_blue, on_magenta, on_cyan, on_white
+
+        attrs (list(str)): Text attributes. Any of the following values:
+            bold, dark, underline, blink, reverse, concealed.
+    """
+    color_replacement = _create_color_replacement(
+        color=color, on_color=on_color, attrs=attrs,
+    )
     return replace_text(match_pattern, replacement=color_replacement)
 
 
@@ -100,16 +119,17 @@ class CountLines(object):
     """Tranformation returning line of text with line count added."""
 
     def __init__(self, line_template='{count_label} {line}',
-                 count_template='{count:>3}:', color_args=('grey',)):
+                 count_template='{count:>3}:',
+                 color_kwargs={'color': 'grey', 'attrs': ['bold']}):
         self.count = 0
         self.line_template = line_template
         self.count_template = count_template
-        self.color_args = color_args
+        self.color_kwargs = color_kwargs
 
     def __call__(self, line):
         self.count += 1
         count_label = self.count_template.format(count=self.count)
-        count_label = colored(count_label, *self.color_args, attrs=['bold'])
+        count_label = colored(count_label, **self.color_kwargs)
         return self.line_template.format(count_label=count_label, line=line)
 
     def reset(self):
