@@ -6,12 +6,6 @@
 from __future__ import unicode_literals
 
 
-def _create_format_factory(template):
-    def format_function(*args, **kwargs):
-        return template.format(*args, **kwargs)
-    return format_function
-
-
 def any_pattern(*args):
     """Return regex that matches any of the input regex patterns.
 
