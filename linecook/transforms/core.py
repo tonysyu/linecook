@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """
+.. default-role:: literal
+
 Text formatters match the signature of basic regex functions, taking a
 text/regex match pattern and an input string.
 """
@@ -12,14 +14,11 @@ from termcolor import colored
 from toolz import itertoolz
 from toolz.functoolz import identity
 
-from .utils import match_pattern_transform
+from ..parsers import resolve_match_pattern
 
 
-@match_pattern_transform
-def filter_line(string, match_pattern,
-                on_match=None,
-                on_mismatch=None):
-    """Return line filtered by match pattern.
+def filter_line(match_pattern, on_match=None, on_mismatch=None):
+    """Return transform that filters lines by match pattern.
 
     If neither `on_match` or `on_mismatch` are given, return input
     string if it matches the given pattern. Otherwise, the input string is
@@ -29,49 +28,59 @@ def filter_line(string, match_pattern,
         on_match (callable): A text transform that is called with the input
             `string` if the string matches the `match_pattern`.
         on_mismatch (callable): A text transform that is called with the input
-            `string` if the string does not matche the `match_pattern`.
+            `string` if the string does not match the `match_pattern`.
     """
-    match = match_pattern.search(string)
+    match_pattern = resolve_match_pattern(match_pattern)
 
-    if not (on_match or on_mismatch):
-        return None if match else string
+    def transform(string):
+        match = match_pattern.search(string)
 
-    if match and on_match:
-        return on_match(string)
-    elif not match and on_mismatch:
-        return on_mismatch(string)
+        if not (on_match or on_mismatch):
+            return None if match else string
+
+        if match and on_match:
+            return on_match(string)
+        elif not match and on_mismatch:
+            return on_mismatch(string)
+
+    return transform
 
 
-@match_pattern_transform
-def partition(string, match_pattern,
-              on_match=None,
-              on_mismatch=None):
+def partition(match_pattern, on_match=None, on_mismatch=None):
     """Return line partitioned by pattern and re-joined after transformation.
 
     Args:
         on_match (callable): A text transform that is called with each
-            matched substring.
-        on_match (callable): A text transform that is called with each
-            unmatched substring.
+            substring that matches the `match_pattern`.
+        on_mismatch (callable): A text transform that is called with each
+            substring that does not match the `match_pattern`.
     """
+    match_pattern = resolve_match_pattern(match_pattern)
     on_match = on_match or identity
     on_mismatch = on_mismatch or identity
 
-    matched_output = (on_match(x)
-                      for x in match_pattern.findall(string))
-    # With capture groups, `re.split` returns matches, so those filter out.
-    unmatched_output = (on_mismatch(x)
-                        for x in match_pattern.split(string)
-                        if not match_pattern.match(x))
-    # Split will return an empty string at the beginning if pattern is found
-    # at the beginning of the input string.
-    substrings = itertoolz.interleave([unmatched_output, matched_output])
-    return ''.join(substrings)
+    def transform(string):
+        matched_output = (on_match(x)
+                          for x in match_pattern.findall(string))
+        # With capture groups, `re.split` returns matches, so those filter out.
+        unmatched_output = (on_mismatch(x)
+                            for x in match_pattern.split(string)
+                            if not match_pattern.match(x))
+        # Split will return an empty string at the beginning if pattern is
+        # found at the beginning of the input string.
+        substrings = itertoolz.interleave([unmatched_output, matched_output])
+        return ''.join(substrings)
+
+    return transform
 
 
-@match_pattern_transform
-def replace_text(string, match_pattern, replacement):
-    return match_pattern.sub(replacement, string)
+def replace_text(match_pattern, replacement):
+    match_pattern = resolve_match_pattern(match_pattern)
+
+    def transform(string):
+        return match_pattern.sub(replacement, string)
+
+    return transform
 
 
 def _create_color_replacement(color=None, on_color=None, attrs=None):

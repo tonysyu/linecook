@@ -190,6 +190,15 @@ You can isolate specific test files/functions/methods with::
     pytest PATH/TO/TEST.py::TEST_FUNCTION
     pytest PATH/TO/TEST.py::TEST_CLASS::TEST_METHOD
 
+Documentation
+-------------
+
+Documentation is built from within the docs directory::
+
+    cd docs
+    make html
+
+After building, you can view the docs at `docs/_build/html/index.html`.
 
 Debugging
 ---------

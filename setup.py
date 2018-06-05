@@ -66,6 +66,7 @@ setup(
             'sphinx',
             'sphinx-autobuild',
             'sphinx_rtd_theme',
+            'sphinxcontrib-napoleon',
         ],
     },
     package_data={},

@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+.. default-role:: literal
+
+"""
+
 from __future__ import print_function, unicode_literals
 
 import re
