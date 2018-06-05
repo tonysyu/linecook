@@ -18,6 +18,20 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
+install_requires = [
+    'termcolor',
+    'toolz',
+]
+
+tests_require = [
+    'coverage',
+    'flake8',
+    'mock',
+    'pytest',
+    'pytest-cov',
+    'pytest-flake8',
+    'pytest-sugar',
+]
 
 setup(
     name='sample',
@@ -42,22 +56,19 @@ setup(
     ],
     keywords='console terminal logging parsing color sed termcolor',
     packages=find_packages(exclude=['tests*']),
-    install_requires=[
-        'termcolor',
-        'toolz',
-    ],
+    install_requires=install_requires,
     setup_requires=[
         'pytest-runner',
     ],
-    tests_require=[
-        'coverage',
-        'flake8',
-        'mock',
-        'pytest',
-        'pytest-cov',
-        'pytest-flake8',
-        'pytest-sugar',
-    ],
+    tests_require=tests_require,
+    extras_require={
+        'dev': install_requires + tests_require + [
+            'sphinx',
+            'sphinx-autobuild',
+            'sphinx_rtd_theme',
+            'sphinxcontrib-napoleon',
+        ],
+    },
     package_data={},
     entry_points={
         'console_scripts': [

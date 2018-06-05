@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
+"""
+.. default-role:: literal
+
+"""
 from __future__ import unicode_literals
 
 
-def _create_format_factory(template):
-    def format_function(*args, **kwargs):
-        return template.format(*args, **kwargs)
-    return format_function
-
-
 def any_pattern(*args):
+    """Return regex that matches any of the input regex patterns.
+
+    The returned value is equivalent to writing::
+
+        r'(<arg1>|<arg2>|...)'
+    """
     return '({})'.format('|'.join(args))
 
 
@@ -16,8 +20,26 @@ exact_template = r'^{}$'
 word_template = r'\b{}\b'
 quoted_string_template = r'(?<![{0}\w]){0}[^{0}]*{0}(?![{0}\w])'
 
-exact_match = _create_format_factory(exact_template)
-bounded_word = _create_format_factory(word_template)
+
+def exact_match(string):
+    """Return regex that matches the input string exactly.
+
+    The returned value is equivalent to writing::
+
+        r'^<string>$'
+    """
+    return exact_template.format(string)
+
+
+def bounded_word(string):
+    """Return regex that matches the input string as a bounded word.
+
+    The returned value is equivalent to writing::
+
+        r'\b<string>\b'
+    """
+    return word_template.format(string)
+
 
 num_float = bounded_word(r'[+-]?(\d*[.])?\d+')
 num_int = bounded_word(r'\d')

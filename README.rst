@@ -163,6 +163,46 @@ include any configuration as a dictionary that's importable:
 Development
 ===========
 
+Setup
+-----
+
+Install development requirements::
+
+    pip install -e .[dev]
+
+
+Running tests
+-------------
+
+The test suite can be run without installing dev requirements using::
+
+    python setup.py test
+
+That said, running pytest directly provides more options for debugging. With
+dev requirements installed, you can just run the following from the root
+directory of the repo::
+
+    pytest
+
+You can isolate specific test files/functions/methods with::
+
+    pytest PATH/TO/TEST.py
+    pytest PATH/TO/TEST.py::TEST_FUNCTION
+    pytest PATH/TO/TEST.py::TEST_CLASS::TEST_METHOD
+
+Documentation
+-------------
+
+Documentation is built from within the docs directory::
+
+    cd docs
+    make html
+
+After building, you can view the docs at `docs/_build/html/index.html`.
+
+Debugging
+---------
+
 It turns out that breakpoints are a bit tricky when processing streamed input.
 A simple `pdb.set_trace()` will fail, so you'll need to try one of the
 solutions described on StackOverflow [1]_, [2]_ (`answer that worked for me`_).

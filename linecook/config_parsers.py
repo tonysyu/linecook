@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+"""
+.. default-role:: literal
+
+"""
+
+from __future__ import unicode_literals
+
 import itertools
 
 from toolz import dicttoolz
@@ -34,6 +42,25 @@ def register_transform_parser(config_type):
 
 @register_transform_parser('colorizers')
 def parse_colorizers(colorizers_dict_seq):
+    """Return dictionary of transforms based on `colorizers` in config_dict.
+
+    This converts `colorizers` field in a configuration dict into color
+    transforms. For example, take the following configuration::
+
+        'colorizers': {
+            'warn_color': {
+                'match_pattern': ' WARN ',
+                'on_color': 'on_yellow',
+            },
+        },
+
+    That configuration is parsed to return the transform::
+
+        from linecook.transforms.core import color_text
+
+        color_text(' WARN ', on_color='on_yellow')
+
+    """
     colorizers_dict = dicttoolz.merge(colorizers_dict_seq)
     return {key: color_text(color_kwargs)
             for key, color_kwargs in colorizers_dict.items()}
@@ -41,10 +68,15 @@ def parse_colorizers(colorizers_dict_seq):
 
 @register_transform_parser('transforms')
 def parse_transforms(transforms_dict_seq):
+    """Return dictionary of transforms based on `transforms` in config_dict.
+
+    All this really does is merge the transforms defined in multiple
+    configuration dictionaries.
+    """
     return dicttoolz.merge(transforms_dict_seq)
 
 
-def iter_parsers():
+def _iter_parsers():
     """Yield parsers in required order.
 
     Parsers in `TRANSFORM_PARSER_START_ORDER` are yielded first, those in
@@ -69,8 +101,16 @@ def iter_parsers():
 
 
 def collect_tranforms(config_dicts):
+    """Return transform dictionary from a list of configuration dictionaries.
+
+    Args:
+        config_dicts (list(dict)): Unparsed configuration dictionaries. For
+            each dictionary, this applies parsers registered with
+            `register_transform_parser` that convert configuration data into
+            named transform functions.
+    """
     transforms = {}
-    for config_type, parse in iter_parsers():
+    for config_type, parse in _iter_parsers():
         config_type_data = get_value_from_each(config_type, config_dicts)
         transforms.update(parse(config_type_data))
     return transforms
@@ -86,10 +126,21 @@ def resolve_recipe(recipe, transforms_registry):
 
 
 def collect_recipes(config_dicts, transforms_registry):
+    """Return recipe dictionary from a list of configuration dictionaries.
+
+    Args:
+        config_dicts (list(dict)): Unparsed configuration dictionaries. For
+            each dictionary, only use the 'recipes' value, which itself is a
+            dictionary, where the keys are recipe names and values are lists
+            of transform functions or transform names.
+        transforms_registry (dict): Dictionary containing named transform
+            functions. See also `collect_tranforms`, which build this registry.
+    """
     recipe_dict = dicttoolz.merge(get_value_from_each('recipes', config_dicts))
     return {name: list(resolve_recipe(r, transforms_registry))
             for name, r in recipe_dict.items()}
 
 
 def get_value_from_each(key, dict_list):
+    """Return list of values for `key` in a list of dictionaries."""
     return (d[key] for d in dict_list if key in d)
