@@ -162,3 +162,34 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
+
+
+# -- Run sphinx-apidoc to generate API docs ----------------------------------
+
+def run_apidoc(_):
+    """Run sphinx-apidoc to generate API docs for linecook
+
+    See https://github.com/rtfd/readthedocs.org/issues/1139
+    """
+    from sphinx import apidoc
+    import os
+    import sys
+
+    here = os.path.abspath(os.path.dirname(__file__))
+    sys.path.append(os.path.join(here, '..'))
+
+    api_docs_dir = os.path.join(here, 'api')
+    package_dir = os.path.join(here, '..', 'linecook')
+    exclude_dirs = [
+        os.path.join(package_dir, 'tests', '*'),
+        os.path.join(package_dir, '**', 'tests', '*'),
+    ]
+    options = ['--separate', '--force']
+
+    apidoc_args = options + ['-o', api_docs_dir, package_dir] + exclude_dirs
+    # `None` fixes Sphinx 1.7.1 issue introduced in sphinx-doc/sphinx#4615
+    apidoc.main(None, apidoc_args)
+
+
+def setup(app):
+    app.connect('builder-inited', run_apidoc)
