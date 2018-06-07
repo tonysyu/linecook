@@ -1,15 +1,16 @@
-.. linecook documentation master file, created by
-   sphinx-quickstart on Sun Jun  3 11:10:17 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+========
+Overview
+========
 
-Welcome to linecook's documentation!
-====================================
+`linecook` is a command-line tool that transforms lines of text into a form
+that's pleasant to consume.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   self
+   developer_guide.rst
    api/modules.rst
 
 
