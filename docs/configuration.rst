@@ -43,6 +43,8 @@ And then, `./.linecook/config.py` is defined as::
 
 The loaded result would roughly translate to::
 
+    from linecook.transforms.core import color_text, filter_line
+
     LINECOOK_CONFIG = {
         'transforms': {
             'warn_color': color_text(' WARN ', color='yellow'),

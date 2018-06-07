@@ -5,10 +5,13 @@ linecook: Prepare lines of text for easy consumption
 .. default-role:: literal
 
 .. image:: https://travis-ci.com/tonysyu/linecook.svg?branch=master
-    :target: https://travis-ci.com/tonysyu/linecook
+   :target: https://travis-ci.com/tonysyu/linecook
 
 .. image:: https://codecov.io/gh/tonysyu/linecook/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/tonysyu/linecook
+   :target: https://codecov.io/gh/tonysyu/linecook
+
+.. image:: https://readthedocs.org/projects/linecook/badge/
+   :target: https://linecook.readthedocs.io
 
 
 See the documentation at https://linecook.readthedocs.io
