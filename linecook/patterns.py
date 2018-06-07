@@ -12,7 +12,9 @@ def any_pattern(*args):
     return '({})'.format('|'.join(args))
 
 
+#: Template string to match text exactly (start-to-end)
 exact_template = r'^{}$'
+#: Template string to match text surrounded by word boundaries
 word_template = r'\b{}\b'
 quoted_string_template = r'(?<![{0}\w]){0}[^{0}]*{0}(?![{0}\w])'
 
@@ -32,26 +34,35 @@ def bounded_word(string):
 
     The returned value is equivalent to writing::
 
-        r'\b<string>\b'
+        r'\\b<string>\\b'
     """
     return word_template.format(string)
 
 
+#: Pattern matching floating point number
 num_float = bounded_word(r'[+-]?(\d*[.])?\d+')
-num_int = bounded_word(r'\d')
+#: Pattern matching integers
+num_int = bounded_word(r'[+-]?\d')
+#: Pattern matching integers or floats
 number = any_pattern(num_int, num_float)
 
+#: Pattern matching a numeric year
 year = r'\d{4}'
+#: Pattern matching a numeric month
 month = r'\d{2}'
+#: Pattern matching a numeric day
 day = r'\d{2}'
 
+#: Pattern matching calendar dates in ISO 8601 format (`YYYY-MM-DD`)
 date = bounded_word(r'{}-{}-{}'.format(year, month, day))
+#: Pattern matching numeric time
 time = bounded_word(r'(\d{2}:\d{2}(:\d{2})?)')
+#: Pattern matching numeric time with milliseconds
 time_ms = bounded_word(r'\d{2}:\d{2}:\d{2}(,|.)\d{3}')
 
-log_level = bounded_word(any_pattern('TRACE', 'DEBUG', 'INFO', 'WARN',
-                                     'ERROR', 'SEVERE', 'FATAL'))
-
+#: Pattern matching strings surrounded by single-quotes
 single_quoted_strings = quoted_string_template.format("'")
+#: Pattern matching strings surrounded by double-quotes
 double_quoted_strings = quoted_string_template.format('"')
+#: Pattern matching strings surrounded by single- or double-quotes
 strings = any_pattern(single_quoted_strings, double_quoted_strings)
