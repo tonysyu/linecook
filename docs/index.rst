@@ -10,6 +10,7 @@ that's pleasant to consume.
    :caption: Contents:
 
    self
+   configuration.rst
    developer_guide.rst
    api/modules.rst
 
