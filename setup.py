@@ -23,6 +23,13 @@ install_requires = [
     'toolz',
 ]
 
+docs_require = [
+    'sphinx',
+    'sphinx-autobuild',
+    'sphinx_rtd_theme',
+    'sphinxcontrib-napoleon',
+]
+
 tests_require = [
     'coverage',
     'flake8',
@@ -62,12 +69,8 @@ setup(
     ],
     tests_require=tests_require,
     extras_require={
-        'dev': install_requires + tests_require + [
-            'sphinx',
-            'sphinx-autobuild',
-            'sphinx_rtd_theme',
-            'sphinxcontrib-napoleon',
-        ],
+        'docs': docs_require,
+        'dev': tests_require + docs_require,
     },
     package_data={},
     entry_points={
