@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-.. default-role:: literal
-
 Text formatters match the signature of basic regex functions, taking a
 text/regex match pattern and an input string.
 """

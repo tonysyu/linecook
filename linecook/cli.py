@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-.. default-role:: literal
-
 `linecook` cli to prepare lines of text for easy consumption.
 
 """

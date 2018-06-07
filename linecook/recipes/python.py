@@ -1,8 +1,6 @@
 
 # -*- coding: utf-8 -*-
 """
-.. default-role:: literal
-
 Example of linecook recipe for python code.
 
 This is a toy example: Actual syntax highlighting isn't possible since linecook

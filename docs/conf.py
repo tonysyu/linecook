@@ -73,6 +73,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# Default role used for backticks ('literal' == inline code)
+default_role = 'literal'
+
 
 # -- Options for HTML output -------------------------------------------------
 
