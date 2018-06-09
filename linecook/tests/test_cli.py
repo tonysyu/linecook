@@ -51,16 +51,24 @@ class TestRun:
         fake_print.assert_called_once_with(input_text, end='')
 
     def test_list_recipes(self):
-        with mock.patch.object(cli.config, 'load_config') as fake_load_config:
-            fake_load_config.return_value = cli.config.LineCookConfig([{
-                'recipes': {'my-recipe': []}
-            }])
-
+        with mock_linecook_config({'recipes': {'my-recipe': []}}):
             args = create_linecook_args(['--list-recipes'])
             with mock_print() as fake_print:
                 cli.run(args)
 
         fake_print.assert_has_calls([
+            mock.call('Available recipes:'),
+            mock.call('- my-recipe'),
+        ])
+
+    def test_recipe_not_found(self):
+        with mock_linecook_config({'recipes': {'my-recipe': []}}):
+            args = create_linecook_args(['does-not-exist'])
+            with mock_print() as fake_print:
+                cli.run(args)
+
+        fake_print.assert_has_calls([
+            mock.call(cli.recipe_not_found_msg('does-not-exist')),
             mock.call('Available recipes:'),
             mock.call('- my-recipe'),
         ])
@@ -81,6 +89,14 @@ class TestMain:
 def mock_print(module=cli):
     with mock.patch.object(module, 'print') as fake_print:
         yield fake_print
+
+
+@contextmanager
+def mock_linecook_config(config_dict):
+    with mock.patch.object(cli.config, 'load_config') as fake_load_config:
+        linecook_config = cli.config.LineCookConfig([config_dict])
+        fake_load_config.return_value = linecook_config
+        yield linecook_config
 
 
 def create_linecook_args(arg_list=()):

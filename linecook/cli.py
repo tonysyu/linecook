@@ -9,6 +9,7 @@ from __future__ import print_function, unicode_literals
 import argparse
 import sys
 
+from termcolor import colored
 from toolz.functoolz import compose
 
 from . import config
@@ -41,13 +42,27 @@ def build_parser():
     return parser
 
 
+def print_available_recipes(linecook_config):
+    print("Available recipes:")
+    for recipe_name in linecook_config.recipes.keys():
+        print('- {}'.format(recipe_name))
+
+
+def recipe_not_found_msg(recipe_name):
+    msg = "Recipe not found: {}".format(recipe_name)
+    return colored(msg, color='red')
+
+
 def run(args):
     linecook_config = config.load_config()
 
     if args.list_recipes:
-        print("Available recipes:")
-        for recipe_name in linecook_config.recipes.keys():
-            print('- {}'.format(recipe_name))
+        print_available_recipes(linecook_config)
+        return
+
+    if args.recipe not in linecook_config.recipes:
+        print(recipe_not_found_msg(args.recipe))
+        print_available_recipes(linecook_config)
         return
 
     recipe = linecook_config.recipes[args.recipe]
