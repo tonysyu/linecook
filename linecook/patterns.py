@@ -39,6 +39,8 @@ def bounded_word(string):
     return word_template.format(string)
 
 
+#: Pattern matching any text
+anything = r'.*'
 #: Pattern matching floating point number
 num_float = bounded_word(r'[+-]?(\d*[.])?\d+')
 #: Pattern matching integers

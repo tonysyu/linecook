@@ -12,6 +12,7 @@ from termcolor import colored
 from toolz import itertoolz
 from toolz.functoolz import identity
 
+from .. import patterns
 from ..parsers import resolve_match_pattern
 
 
@@ -104,7 +105,8 @@ def _create_color_replacement(color=None, on_color=None, attrs=None):
     return color_replacement
 
 
-def color_text(match_pattern, color=None, on_color=None, attrs=None):
+def color_text(match_pattern=patterns.anything,
+               color=None, on_color=None, attrs=None):
     """Return color transform that returns colorized version of input string.
 
     Args:
