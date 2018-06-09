@@ -9,7 +9,6 @@ import functools
 import os
 
 from termcolor import colored
-from toolz import itertoolz
 from toolz.functoolz import identity
 
 from .. import patterns
