@@ -1,8 +1,8 @@
 from linecook import patterns
 
 
-def test_any_pattern():
-    assert patterns.any_pattern('a', 'b', 'c') == r'(a|b|c)'
+def test_any_of():
+    assert patterns.any_of('a', 'b', 'c') == r'(a|b|c)'
 
 
 def test_bounded_word():

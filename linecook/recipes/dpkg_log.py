@@ -8,7 +8,7 @@ from .. import patterns as rx
 from ..transforms import color_text, partition
 
 
-EMPHASIZE_ACTIONS = rx.bounded_word(rx.any_pattern(
+EMPHASIZE_ACTIONS = rx.bounded_word(rx.any_of(
     'install', 'upgrade', 'remove', 'purge',
 ))
 

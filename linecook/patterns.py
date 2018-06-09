@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 
-def any_pattern(*args):
+def any_of(*args):
     """Return regex that matches any of the input regex patterns.
 
     The returned value is equivalent to writing::
@@ -55,7 +55,7 @@ num_float = bounded_word(r'[+-]?(\d*[.])?\d+')
 #: Pattern matching integers
 num_int = bounded_word(r'[+-]?\d')
 #: Pattern matching integers or floats
-number = any_pattern(num_int, num_float)
+number = any_of(num_int, num_float)
 
 #: Pattern matching a numeric year
 year = r'\d{4}'
@@ -76,4 +76,4 @@ single_quoted_strings = quoted_string_template.format("'")
 #: Pattern matching strings surrounded by double-quotes
 double_quoted_strings = quoted_string_template.format('"')
 #: Pattern matching strings surrounded by single- or double-quotes
-strings = any_pattern(single_quoted_strings, double_quoted_strings)
+strings = any_of(single_quoted_strings, double_quoted_strings)
