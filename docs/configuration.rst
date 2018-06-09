@@ -1,6 +1,10 @@
+.. _configuration:
+
 =============
 Configuration
 =============
+
+.. _configuration files:
 
 Configuration files
 ===================

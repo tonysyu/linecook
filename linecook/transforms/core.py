@@ -94,9 +94,10 @@ def _create_color_replacement(color=None, on_color=None, attrs=None):
 
     Args:
         color (str): Text color. Any of the following values
-            red, green, yellow, blue, magenta, cyan, white.
+            grey, red, green, yellow, blue, magenta, cyan, white.
         on_color (str): Background color. Any of the following values
-            on_red, on_green, on_yellow, on_blue, on_magenta, on_cyan, on_white
+            on_grey, on_red, on_green, on_yellow, on_blue, on_magenta,
+            on_cyan, on_white
 
         attrs (str): Text attributes. Any of the following values:
             bold, dark, underline, blink, reverse, concealed.
@@ -115,9 +116,10 @@ def color_text(match_pattern=patterns.anything,
 
     Args:
         color (str): Text color. Any of the following values
-            red, green, yellow, blue, magenta, cyan, white.
+            grey, red, green, yellow, blue, magenta, cyan, white.
         on_color (str): Background color. Any of the following values
-            on_red, on_green, on_yellow, on_blue, on_magenta, on_cyan, on_white
+            on_grey, on_red, on_green, on_yellow, on_blue, on_magenta,
+            on_cyan, on_white
 
         attrs (list(str)): Text attributes. Any of the following values:
             bold, dark, underline, blink, reverse, concealed.

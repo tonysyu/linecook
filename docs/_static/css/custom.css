@@ -1,0 +1,31 @@
+pre.terminal.literal-block {
+    padding: 1em;
+    color: white;
+    background-color: #404040;
+    margin-bottom: 24px;
+}
+
+.terminal .blue {
+    color: #7a7aff;
+}
+
+.terminal .cyan {
+    color: cyan;
+}
+
+.terminal .red {
+    color: red;
+}
+
+.terminal .yellow {
+    color: yellow;
+}
+
+.terminal .on-red {
+    background-color: red;
+}
+
+.terminal .black-on-yellow {
+    color: black;
+    background-color: yellow;
+}
