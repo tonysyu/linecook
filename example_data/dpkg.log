@@ -1,0 +1,27 @@
+2018-06-09 13:55:26 install postgresql-client:all <none> 9.4+165+deb8u3
+2018-06-09 13:55:26 status half-installed postgresql-client:all 9.4+165+deb8u3
+2018-06-09 13:55:26 status unpacked postgresql-client:all 9.4+165+deb8u3
+2018-06-09 13:55:26 status unpacked postgresql-client:all 9.4+165+deb8u3
+2018-06-09 13:55:26 install tdsodbc:amd64 <none> 0.91-6+b1
+2018-06-09 13:55:26 status half-installed tdsodbc:amd64 0.91-6+b1
+2018-06-09 13:55:26 status unpacked tdsodbc:amd64 0.91-6+b1
+2018-06-09 13:55:26 status unpacked tdsodbc:amd64 0.91-6+b1
+2018-06-09 13:55:26 install unixodbc:amd64 <none> 2.3.1-3
+2018-06-09 13:55:26 status half-installed unixodbc:amd64 2.3.1-3
+2018-06-09 13:55:26 status unpacked unixodbc:amd64 2.3.1-3
+2018-06-09 13:55:26 status unpacked unixodbc:amd64 2.3.1-3
+2018-06-09 13:55:26 install unixodbc-dev:amd64 <none> 2.3.1-3
+2018-06-09 13:55:26 status half-installed unixodbc-dev:amd64 2.3.1-3
+2018-06-09 13:55:26 status unpacked unixodbc-dev:amd64 2.3.1-3
+2018-06-09 13:55:26 status unpacked unixodbc-dev:amd64 2.3.1-3
+2018-06-09 13:55:27 startup packages configure
+2018-06-09 13:55:27 configure freetds-common:all 0.91-6 <none>
+2018-06-09 13:55:27 status unpacked freetds-common:all 0.91-6
+2018-06-09 13:55:27 status half-configured freetds-common:all 0.91-6
+2018-06-09 13:55:27 status installed freetds-common:all 0.91-6
+2018-06-09 13:55:27 configure libct4:amd64 0.91-6+b1 <none>
+2018-06-09 13:55:27 status unpacked libct4:amd64 0.91-6+b1
+2018-06-09 13:55:27 status half-configured libct4:amd64 0.91-6+b1
+2018-06-09 13:55:27 status installed libct4:amd64 0.91-6+b1
+2018-06-09 13:55:27 status triggers-pending libc-bin:amd64 2.19-18+deb8u10
+2018-06-09 13:55:27 configure libodbc1:amd64 2.3.1-3 <none>
