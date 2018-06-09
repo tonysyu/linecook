@@ -59,15 +59,20 @@ def partition(match_pattern, on_match=None, on_mismatch=None):
     on_mismatch = on_mismatch or identity
 
     def transform(string):
-        matched_output = (on_match(x)
-                          for x in match_pattern.findall(string))
-        # With capture groups, `re.split` returns matches, so those filter out.
-        unmatched_output = (on_mismatch(x)
-                            for x in match_pattern.split(string)
-                            if not match_pattern.match(x))
-        # Split will return an empty string at the beginning if pattern is
-        # found at the beginning of the input string.
-        substrings = itertoolz.interleave([unmatched_output, matched_output])
+        i_start = 0
+        substrings = []
+        for match in match_pattern.finditer(string):
+            match_start, match_end = match.span()
+
+            if i_start < match_start:
+                substrings.append(on_mismatch(string[i_start:match_start]))
+
+            substrings.append(on_match(string[match_start:match_end]))
+            i_start = match_end
+
+        if i_start < len(string):
+            substrings.append(on_mismatch(string[i_start:]))
+
         return ''.join(substrings)
 
     return transform

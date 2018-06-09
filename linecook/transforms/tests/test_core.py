@@ -63,26 +63,40 @@ class TestSplitOn:
 class TestPartition:
 
     def test_partition(self):
-        word = self.create_partition_function('[A-z]+')
-        word('1 match 2')
+        match_word = self.create_partition_function('[A-z]+')
+        match_word('1 match 2')
 
         self.on_match.assert_called_once_with('match')
         self.on_mismatch.assert_has_calls([mock.call('1 '), mock.call(' 2')])
+
+    def test_partition_exact_match(self):
+        match_all = self.create_partition_function('\w+')
+        match_all('match')
+
+        self.on_match.assert_called_once_with('match')
+        self.on_mismatch.assert_not_called()
 
     def test_partition_with_capture_group(self):
-        word = self.create_partition_function('([A-z]+)')
-        word('1 match 2')
+        match_word = self.create_partition_function('([A-z]+)')
+        match_word('1 match 2')
 
         self.on_match.assert_called_once_with('match')
         self.on_mismatch.assert_has_calls([mock.call('1 '), mock.call(' 2')])
 
+    def test_partition_with_multiple_capture_groups(self):
+        match_word = self.create_partition_function('([A-z]+) (\d)')
+        match_word('1 match 2')
+
+        self.on_match.assert_called_once_with('match 2')
+        self.on_mismatch.assert_called_once_with('1 ')
+
     def test_partition_output(self):
-        word = self.create_partition_function(
+        match_word = self.create_partition_function(
             '([A-z]+)',
-            success_template='success({})',
-            failure_template='failure({})',
+            success_template='yes({})',
+            failure_template='no({})',
         )
-        assert word('1 match 2') == 'failure(1 )success(match)failure( 2)'
+        assert match_word('1 match 2') == 'no(1 )yes(match)no( 2)'
 
     def create_partition_function(self, match_pattern,
                                   success_template='{}',
