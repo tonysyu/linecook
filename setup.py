@@ -11,6 +11,8 @@ from codecs import open
 from os import path
 from setuptools import setup, find_packages
 
+import linecook
+
 
 here = path.abspath(path.dirname(__file__))
 
@@ -41,10 +43,16 @@ tests_require = [
     'pytest-sugar',
 ]
 
+dev_requires = tests_require + docs_require + [
+    'twine',
+    'wheel',
+]
+
+
 setup(
-    name='sample',
-    version='0.1.0',
-    description='',
+    name='linecook',
+    version=linecook.__version__,
+    description='Prepare lines of text for easy consumption',
     long_description=long_description,
     url='https://github.com/tonysyu/linecook',
     author='Tony S. Yu',
@@ -71,7 +79,7 @@ setup(
     tests_require=tests_require,
     extras_require={
         'docs': docs_require,
-        'dev': tests_require + docs_require,
+        'dev': dev_requires,
     },
     package_data={},
     entry_points={

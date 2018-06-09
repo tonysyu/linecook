@@ -61,3 +61,12 @@ an issue, you can use the `--text` (`-t`) flag instead of piping text::
 .. [1] https://stackoverflow.com/questions/17074177/how-to-debug-python-cli-that-takes-stdin
 .. [2] https://stackoverflow.com/questions/9178751/use-pdb-set-trace-in-a-script-that-reads-stdin-via-a-pipe
 .. _answer that worked for me: https://stackoverflow.com/a/48430325/260303
+
+
+Release
+=======
+
+- Update `__version__` number in `linecook.__init__.py`
+- Build and upload::
+      python setup.py sdist bdist_wheel
+      twine upload --repository-url https://upload.pypi.org/legacy/ dist/*

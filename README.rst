@@ -31,9 +31,9 @@ but you could easily define your own:
 
     {
         'replacers': {
-            'request': ['s:Can I', 'I can'],
-            'verb': ['s:have', 'haz'],
-            'noun': ['s:cheeseburger', 'cheezburger'],
+            'request': ['Can I', 'I can'],
+            'verb': ['have', 'haz'],
+            'noun': ['cheeseburger', 'cheezburger'],
         },
         'recipes': {
             'lolcats': ['request', 'verb', 'noun'],
@@ -64,18 +64,19 @@ example colorizes lines of a log file using the following configuration:
 
     {
         'colorizers': {
-            'info_color': [r'w:INFO', 'cyan'],
-            'warn_color': [r'w:WARN', 'yellow', ['bold']],
-            'error_color': [r'w:ERROR', 'white', 'on_red'],
+            'warn_color': {
+                'match_pattern': ' WARN ',
+                'color': 'yellow',
+            },
+            'error_color': {
+                'match_pattern': ' ERROR ',
+                'on_color': 'on_red',
+            },
         },
         'recipes': {
-            'log_level_color': [
-                'info_color',
+            'logs': [
                 'warn_color',
                 'error_color',
-            ],
-            'logs': [
-                'log_level_color',
             ],
         },
     }
@@ -83,84 +84,3 @@ example colorizes lines of a log file using the following configuration:
 You can use the ::
 
     $ tail -f path/to/log.txt | linecook logs
-
-patterns:
-    A pattern is a regex pattern for matching a piece of text.
-recipes:
-    A presenter is a collection of transforms used to transform a line of code,
-    log entry, or whatever piece of text you like.
-
-While `linecook` comes with a handful of patterns and transforms
-to create your own recipes, the core idea is to make it easy to define your
-own:
-
-.. code-block:: python
-
-    {
-        'patterns': {
-            'PATTERN_NAME': <MATCH_STRING>,
-            ...
-        },
-        'filters': {
-            'FILTER_NAME': <MATCH_STRING>,
-            ...
-        },
-        'deleters': {
-            'DELETER_NAME': <MATCH_STRING>,
-            ...
-        },
-        'replacers': {
-            'REPLACER_NAME': [<MATCH_STRING>, 'OUTPUT'],
-            ...
-        },
-        'colorizers': {
-            'COLORIZER_NAME': [<MATCH_STRING>, 'COLOR_NAME'],
-            ...
-        },
-        'transforms': {
-            'TRANSFORM_NAME': 'PACKAGE.MODULE.TRANSFORM_NAME',
-            'TRANSFORM_NAME': <transform function>,
-            'TRANSFORM_NAME': ['PACKAGE.MODULE.TRANSFORM_NAME', <MATCH_STRING>],
-            'TRANSFORM_NAME': ['PACKAGE.MODULE.TRANSFORM_NAME', [ARG, ...], {'KEY': VALUE, ...}],
-            'TRANSFORM_NAME': ['PACKAGE.MODULE.TRANSFORM_NAME', [ARG, ...], {'KEY': VALUE, ...}],
-            'TRANSFORM_NAME': {
-                'filter': <MATCH_STRING>,
-                'then': <TRANSFORM>,
-                'else': <TRANSFORM>,
-            }
-            ...
-        },
-        'recipes': {
-            'NAME': [
-                'TRANSFORM_NAME',
-                ...
-            ],
-        },
-        ...
-    }
-
-
-The `<MATCH_STRING>` above is a string that's prefixed with a match-string
-type, as described below:
-`'w:WORD'` (`'wi:WORD_IGNORE_CASE'`):
-    An exact word match, which is basically a regex in the form of '\bWORD\b'.
-`'x:EXACT_STRING'` (`'xi:EXACT_STRING_IGNORE_CASE'`):
-    An exact string match, which only matches if the entire string matches,
-    which is basically a regex in the form of `'^EXACT_STRING$'`.
-`'p:PATTERN_NAME'`:
-    A named version of any of the above match-strings.
-
-You don't just have to put all your configuration in one place. You can easily
-include any configuration as a dictionary that's importable:
-
-.. code-block:: python
-
-    {
-        'includes': [
-            'PACKAGE.MODULE.CONFIG_DICT',
-            'PATH/TO/CONFIG.json',
-            'PATH/TO/CONFIG.yaml',
-            ...
-        ],
-        ...
-    }

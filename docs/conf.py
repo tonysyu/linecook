@@ -5,16 +5,9 @@
 # This file does only contain a selection of the most common options. For a
 # full list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
+import re
 
-# -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import linecook
 
 
 # -- Project information -----------------------------------------------------
@@ -24,9 +17,9 @@ copyright = '2018, Tony S. Yu'
 author = 'Tony S. Yu'
 
 # The short X.Y version
-version = ''
+version = re.sub('-.*', '', linecook.__version__)
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = linecook.__version__
 
 
 # -- General configuration ---------------------------------------------------
