@@ -49,7 +49,7 @@ setup(
     url='https://github.com/tonysyu/linecook',
     author='Tony S. Yu',
     author_email='tsyu80@gmail.com',
-    license='MIT',
+    license='Modified BSD',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
