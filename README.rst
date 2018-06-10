@@ -20,13 +20,14 @@ See the documentation at https://linecook.readthedocs.io
 that's pleasant to consume.
 
 The core goal of `linecook` is to make it easy to create your own transforms to
-parse whatever text you have. For example, if we have an `app.log` file that
-looks like:
+parse whatever text you have. For example, take an `app.log` file that looks
+like:
 
 .. image:: docs/_static/images/app_log_raw.png
 
 If you want to highlight the log type and mute the dates/times, then you can
-create a custom recipe in one of your :ref:`configuration files` like the
+create a custom recipe in one of your `configuration files
+<https://linecook.readthedocs.io/en/latest/configuration.html>`_ like the
 following:
 
 .. code-block:: python

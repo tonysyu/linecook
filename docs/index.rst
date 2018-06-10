@@ -13,8 +13,8 @@ Overview
 that's pleasant to consume.
 
 The core goal of `linecook` is to make it easy to create your own transforms to
-parse whatever text you have. For example, if we have an `app.log` file that
-looks like:
+parse whatever text you have. For example, take an `app.log` file that looks
+like:
 
 .. parsed-literal::
     :class: terminal
@@ -64,9 +64,9 @@ new recipe as an argument:
     :blue:`2018-06-09 13:55:27` :cyan:`INFO` Starting app...
     :blue:`2018-06-09 13:55:27` :on-red:`ERROR` SyntaxError: invalid syntax
         >>> while True print('Hello world')
-          File "<stdin>", line 1
-            while True print('Hello world')
-                           ^
+           File "<stdin>", line 1
+              while True print('Hello world')
+                             ^
         SyntaxError: invalid syntax
 
 That's all there is to it!
