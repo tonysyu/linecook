@@ -40,7 +40,7 @@ following:
    from linecook import patterns as rx
    from linecook.transforms import color_text
 
-   LINECOOK_RECIPES = {
+   LINECOOK_CONFIG = {
        'recipes': {
            'my-logs': [
                 color_text(rx.any_of(rx.date, rx.time), color='blue'),
