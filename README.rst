@@ -4,6 +4,9 @@ linecook: Prepare lines of text for easy consumption
 
 .. default-role:: literal
 
+.. image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
+   :target: https://github.com/tonysyu/linecook/blob/master/LICENSE
+
 .. image:: https://travis-ci.com/tonysyu/linecook.svg?branch=master
    :target: https://travis-ci.com/tonysyu/linecook
 
@@ -62,3 +65,17 @@ new recipe as an argument:
 .. image:: docs/_static/images/app_log_linecook.png
 
 That's all there is to it!
+
+See Also
+========
+
+- `grc <https://github.com/garabik/grc>`: A generic colouriser (sic;) for log
+  files and command output.
+- `rainbow <https://github.com/nicoulaj/rainbow>`: Colorize commands output or
+  STDIN using patterns.
+- `multitail <https://www.vanheusden.com/multitail/>`: Tail multiple files at
+  once, with features to colorize, filter, and merge.
+- `colortail <https://github.com/joakim666/colortail>`: Like the tail command
+  line utility but with colors
+- `StackOverflow post on colored output
+  <https://unix.stackexchange.com/questions/8414>`
