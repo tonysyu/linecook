@@ -13,8 +13,8 @@ Overview
 that's pleasant to consume.
 
 The core goal of `linecook` is to make it easy to create your own transforms to
-parse whatever text you have. For example, if we had an `app.log` file that
-looked like:
+parse whatever text you have. For example, if we have an `app.log` file that
+looks like:
 
 .. parsed-literal::
     :class: terminal
@@ -31,7 +31,7 @@ looked like:
                              ^
         SyntaxError: invalid syntax
 
-If you wanted to to highlight warnings, errors, and dates/times, then you could
+If you want to highlight the log type and mute the dates/times, then you can
 create a custom recipe in one of your :ref:`configuration files` like the
 following:
 
@@ -51,7 +51,8 @@ following:
        },
    }
 
-Then you can run linecook using the following command:
+To use this recipe, you can just pipe the log output to `linecook` with your
+new recipe as an argument:
 
 .. parsed-literal::
     :class: terminal
@@ -60,7 +61,7 @@ Then you can run linecook using the following command:
 
     :blue:`2018-06-09 13:55:26` :cyan:`INFO` Dependencies loaded successfully
     :blue:`2018-06-09 13:55:26` :black-on-yellow:`WARN` Could not find version number for app
-    :blue:`2018-06-09 13:55:27` :cyan:` INFO` Starting app...
+    :blue:`2018-06-09 13:55:27` :cyan:`INFO` Starting app...
     :blue:`2018-06-09 13:55:27` :on-red:`ERROR` SyntaxError: invalid syntax
         >>> while True print('Hello world')
           File "<stdin>", line 1
@@ -68,7 +69,7 @@ Then you can run linecook using the following command:
                            ^
         SyntaxError: invalid syntax
 
-Now, it's much easier to pick out the important log messages.
+That's all there is to it!
 
 .. toctree::
    :maxdepth: 2
