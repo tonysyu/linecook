@@ -16,71 +16,38 @@ linecook: Prepare lines of text for easy consumption
 
 See the documentation at https://linecook.readthedocs.io
 
-NOTE: Most of this is just planning, and doesn't actually work yet.
+`linecook` is a command-line tool that transforms lines of text into a form
+that's pleasant to consume.
 
-This was originally designed as a tool to transform logging output into a form
-that I'd prefer to consume::
+The core goal of `linecook` is to make it easy to create your own transforms to
+parse whatever text you have. For example, if we have an `app.log` file that
+looks like:
 
-    $ echo "Can I have a cheeseburger?" | linecook lolcats
-    I can haz cheezburger?
+.. image:: docs/_static/images/app_log_raw.png
 
-`linecook` doesn't actually define way translate lines of text into lolcats,
-but you could easily define your own:
-
-.. code-block:: python
-
-    {
-        'replacers': {
-            'request': ['Can I', 'I can'],
-            'verb': ['have', 'haz'],
-            'noun': ['cheeseburger', 'cheezburger'],
-        },
-        'recipes': {
-            'lolcats': ['request', 'verb', 'noun'],
-        },
-    }
-
-Recipes are just collections of transformations that translate a line of text
-into another line of text.
-
-transforms:
-    A transform is the most generic type of transformation. It's just
-    a function that takes a string and returns an output string.
-colorizers:
-    A colorizer is simply a transform that takes a substring match and wraps
-    it with a terminal color.
-replacers:
-    A replacer is a simple way to specify a transform that replaces a substring
-    pattern with some output text.
-deleters:
-    A deleter is simply a replacer where the output is an empty string.
-filters:
-    A filter matches lines of text, which are skipped.
-
-Obviously, this is an incredibly basic (and ridiculous) example. A more useful
-example colorizes lines of a log file using the following configuration:
+If you want to highlight the log type and mute the dates/times, then you can
+create a custom recipe in one of your :ref:`configuration files` like the
+following:
 
 .. code-block:: python
 
-    {
-        'colorizers': {
-            'warn_color': {
-                'match_pattern': ' WARN ',
-                'color': 'yellow',
-            },
-            'error_color': {
-                'match_pattern': ' ERROR ',
-                'on_color': 'on_red',
-            },
-        },
-        'recipes': {
-            'logs': [
-                'warn_color',
-                'error_color',
-            ],
-        },
-    }
+   from linecook import patterns as rx
+   from linecook.transforms import color_text
 
-You can use the ::
+   LINECOOK_RECIPES = {
+       'recipes': {
+           'my-logs': [
+                color_text(rx.any_of(rx.date, rx.time), color='blue'),
+                color_text('INFO', color='cyan'),
+                color_text('WARN', color='grey', on_color='on_yellow'),
+                color_text('ERROR', on_color='on_red'),
+           ],
+       },
+   }
 
-    $ tail -f path/to/log.txt | linecook logs
+To use this recipe, you can just pipe the log output to `linecook` with your
+new recipe as an argument:
+
+.. image:: docs/_static/images/app_log_linecook.png
+
+That's all there is to it!
