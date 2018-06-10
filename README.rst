@@ -13,11 +13,21 @@ linecook: Prepare lines of text for easy consumption
 .. image:: https://readthedocs.org/projects/linecook/badge/
    :target: https://linecook.readthedocs.io
 
-
-See the documentation at https://linecook.readthedocs.io
-
 `linecook` is a command-line tool that transforms lines of text into a form
 that's pleasant to consume.
+
+- **Documentation:** https://linecook.readthedocs.io
+- **Source:** https://github.com/tonysyu/linecook
+
+Install
+=======
+
+The recommended way of installing `linecook` is to use `pip`::
+
+    pip install linecook
+
+Cooking up some beautiful text
+==============================
 
 The core goal of `linecook` is to make it easy to create your own transforms to
 parse whatever text you have. For example, take an `app.log` file that looks
