@@ -69,13 +69,13 @@ That's all there is to it!
 See Also
 ========
 
-- `grc <https://github.com/garabik/grc>`: A generic colouriser (sic;) for log
+- `grc <https://github.com/garabik/grc>`_: A generic colouriser (sic;) for log
   files and command output.
-- `rainbow <https://github.com/nicoulaj/rainbow>`: Colorize commands output or
+- `rainbow <https://github.com/nicoulaj/rainbow>`_: Colorize commands output or
   STDIN using patterns.
-- `multitail <https://www.vanheusden.com/multitail/>`: Tail multiple files at
+- `multitail <https://www.vanheusden.com/multitail/>`_: Tail multiple files at
   once, with features to colorize, filter, and merge.
-- `colortail <https://github.com/joakim666/colortail>`: Like the tail command
+- `colortail <https://github.com/joakim666/colortail>`_: Like the tail command
   line utility but with colors
 - `StackOverflow post on colored output
-  <https://unix.stackexchange.com/questions/8414>`
+  <https://unix.stackexchange.com/questions/8414>`_
