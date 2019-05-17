@@ -42,13 +42,13 @@ def bounded_word(string):
 #: Pattern matching any text
 anything = r'.*'
 #: Pattern matching any whitespace
-whitespace = '\s*'
+whitespace = r'\s*'
 #: Pattern matching start of string
 start = r'^'
 #: Pattern matching indent at start of string
 indent = start + whitespace
 #: Pattern matching first word
-first_word = indent + '\w+'
+first_word = indent + r'\w+'
 
 #: Pattern matching floating point number
 num_float = bounded_word(r'[+-]?(\d*[.])?\d+')

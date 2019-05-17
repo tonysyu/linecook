@@ -63,28 +63,28 @@ class TestSplitOn:
 class TestPartition:
 
     def test_partition(self):
-        match_word = self.create_partition_function('[A-z]+')
+        match_word = self.create_partition_function(r'[A-z]+')
         match_word('1 match 2')
 
         self.on_match.assert_called_once_with('match')
         self.on_mismatch.assert_has_calls([mock.call('1 '), mock.call(' 2')])
 
     def test_partition_exact_match(self):
-        match_all = self.create_partition_function('\w+')
+        match_all = self.create_partition_function(r'\w+')
         match_all('match')
 
         self.on_match.assert_called_once_with('match')
         self.on_mismatch.assert_not_called()
 
     def test_partition_with_capture_group(self):
-        match_word = self.create_partition_function('([A-z]+)')
+        match_word = self.create_partition_function(r'([A-z]+)')
         match_word('1 match 2')
 
         self.on_match.assert_called_once_with('match')
         self.on_mismatch.assert_has_calls([mock.call('1 '), mock.call(' 2')])
 
     def test_partition_with_multiple_capture_groups(self):
-        match_word = self.create_partition_function('([A-z]+) (\d)')
+        match_word = self.create_partition_function(r'([A-z]+) (\d)')
         match_word('1 match 2')
 
         self.on_match.assert_called_once_with('match 2')

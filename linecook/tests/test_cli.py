@@ -20,11 +20,11 @@ class TestBuildParser:
 
     def test_custom_recipe(self):
         args = create_linecook_args(['python'])
-        assert args.recipe is 'python'
+        assert args.recipe == 'python'
 
     def test_custom_text(self):
         args = create_linecook_args(['-t', 'Hello world'])
-        assert args.text is 'Hello world'
+        assert args.text == 'Hello world'
 
 
 class TestRun:
