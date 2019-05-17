@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 `linecook` cli to prepare lines of text for easy consumption.
@@ -75,9 +75,11 @@ def run(args):
         return
 
     try:
-        for line in args.text_stream:
-            # Newlines are usually part of the input line so set `end=''`.
-            print(process_text(line), end='')
+        # FIXME: Workaround for Python 2 buffering bug.
+        #        See comments of https://stackoverflow.com/a/7608205/260303
+        for line in iter(args.text_stream.readline, ''):
+            sys.stdout.write(process_text(line))
+            sys.stdout.flush()
     except KeyboardInterrupt:
         pass
 
