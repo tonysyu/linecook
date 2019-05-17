@@ -20,19 +20,18 @@ Running tests
 
 The test suite can be run without installing dev requirements using::
 
-    python setup.py test
+    $ tox
 
-That said, running pytest directly provides more options for debugging. With
-dev requirements installed, you can just run the following from the root
-directory of the repo::
 
-    pytest
+To run tests with a specific Python version, run::
+
+    $ tox --env py36
 
 You can isolate specific test files/functions/methods with::
 
-    pytest PATH/TO/TEST.py
-    pytest PATH/TO/TEST.py::TEST_FUNCTION
-    pytest PATH/TO/TEST.py::TEST_CLASS::TEST_METHOD
+    tox PATH/TO/TEST.py
+    tox PATH/TO/TEST.py::TEST_FUNCTION
+    tox PATH/TO/TEST.py::TEST_CLASS::TEST_METHOD
 
 
 Documentation

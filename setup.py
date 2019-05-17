@@ -73,9 +73,6 @@ setup(
     keywords='console terminal logging parsing color sed termcolor',
     packages=find_packages(exclude=['tests*']),
     install_requires=install_requires,
-    setup_requires=[
-        'pytest-runner',
-    ],
     tests_require=tests_require,
     extras_require={
         'docs': docs_require,
