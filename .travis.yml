@@ -3,6 +3,7 @@ language: python
 python:
   - "2.7"
   - "3.6"
+  # - "3.7"  # Travis doesn't currently support Python 3.7 out-of-the-box
 install:
     - pip install codecov tox-travis
 script:

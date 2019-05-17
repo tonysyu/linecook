@@ -13,6 +13,8 @@ REGEX_WRAPPERS = {
     'word': patterns.word_template,
 }
 
+COMPILED_REGEX_TYPE = type(re.compile('^$'))
+
 
 def create_regex_factory(format_string=None, regex_type=None,
                          ignore_case=False):
@@ -55,7 +57,7 @@ REGEX_FORMATTERS.update({
 
 def resolve_match_pattern(pattern):
     """Return a compiled regex, parsing known regex shorthands."""
-    if isinstance(pattern, re._pattern_type):
+    if isinstance(pattern, COMPILED_REGEX_TYPE):
         return pattern
 
     if TYPE_PREFIX_SEPARATOR in pattern:
