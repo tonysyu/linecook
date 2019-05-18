@@ -54,7 +54,7 @@ dev_requires = tests_require + docs_require + [
 
 setup(
     name='linecook',
-    version='0.1.0',
+    version='0.2.0',
     description='Prepare lines of text for easy consumption',
     long_description=long_description,
     url='https://github.com/tonysyu/linecook',
