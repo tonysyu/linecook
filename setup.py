@@ -44,6 +44,9 @@ tests_require = [
 ]
 
 dev_requires = tests_require + docs_require + [
+    'bumpversion',
+    'ipdb',
+    'ipython',
     'twine',
     'wheel',
 ]
@@ -51,7 +54,7 @@ dev_requires = tests_require + docs_require + [
 
 setup(
     name='linecook',
-    version=linecook.__version__,
+    version='0.1.0',
     description='Prepare lines of text for easy consumption',
     long_description=long_description,
     url='https://github.com/tonysyu/linecook',

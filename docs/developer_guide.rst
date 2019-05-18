@@ -65,7 +65,12 @@ an issue, you can use the `--text` (`-t`) flag instead of piping text::
 Release
 =======
 
-- Update `__version__` number in `linecook.__init__.py`
-- Build and upload::
-      python setup.py sdist bdist_wheel
-      twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+A reminder for the maintainers on how to deploy.
+
+- Update the version and push::
+
+    $ bumpversion patch # possible: major / minor / patch
+    $ git push
+    $ git push --tags
+
+Travis will then deploy to PyPI if tests pass.
