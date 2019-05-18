@@ -11,8 +11,6 @@ from codecs import open
 from os import path
 from setuptools import setup, find_packages
 
-import linecook
-
 
 here = path.abspath(path.dirname(__file__))
 
