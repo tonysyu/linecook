@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 import imp
 from os import path
 
-from .. import default_config
+from .. import recipes
 from .parsers import collect_recipes, collect_tranforms
 
 
@@ -13,6 +13,17 @@ CONFIG_SEARCH_PATHS = [
     path.expanduser('~/.linecook/config.py'),
     path.abspath('./.linecook/config.py'),
 ]
+
+
+DEFAULT_LINECOOK_CONFIG = {
+    'recipes': {
+        'identity': [],  # Recipe that does noting; useful for testing.
+        'default': [],
+
+        'python': recipes.python.recipe,
+        'dpkg.log': recipes.dpkg_log.recipe,
+    },
+}
 
 
 class LineCookConfig(object):
@@ -46,7 +57,7 @@ def load_config():
 
     The following configuration files are loaded, in order:
 
-        - `linecook.default_config`
+        - `linecook.config.core`
         - `~/.linecook/config.py`
         - `./.linecook/config.py`
 
@@ -97,7 +108,7 @@ def load_config():
     config file: Instead, the second file only overrode the `'default'` value
     in the first config file, but preseved the `'logs'` value.
     """
-    config_dicts = [default_config.LINECOOK_CONFIG]
+    config_dicts = [DEFAULT_LINECOOK_CONFIG]
     config_dicts.extend(_load_config_file_from_path(file_path)
                         for file_path in CONFIG_SEARCH_PATHS)
     return LineCookConfig(config_dicts)
