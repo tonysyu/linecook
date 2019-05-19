@@ -25,7 +25,7 @@ install_requires = [
 ]
 
 docs_require = [
-    'sphinx',
+    'sphinx < 2',
     'sphinx-autobuild',
     'sphinx_rtd_theme',
     'sphinxcontrib-napoleon',

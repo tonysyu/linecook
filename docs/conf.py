@@ -184,7 +184,7 @@ def run_apidoc(_):
 
     apidoc_args = options + ['-o', api_docs_dir, package_dir] + exclude_dirs
     # `None` fixes Sphinx 1.7.1 issue introduced in sphinx-doc/sphinx#4615
-    apidoc.main(None, apidoc_args)
+    apidoc.main(apidoc_args)
 
 
 def setup(app):

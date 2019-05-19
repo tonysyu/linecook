@@ -73,4 +73,7 @@ A reminder for the maintainers on how to deploy.
     $ git push
     $ git push --tags
 
-Travis will then deploy to PyPI if tests pass.
+- Build release, deploy to PyPI, and clean ::
+
+    $ make release
+    $ make clean
