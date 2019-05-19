@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 import imp
 from os import path
 
-from . import default_config
-from .config_parsers import collect_recipes, collect_tranforms
+from .. import default_config
+from .parsers import collect_recipes, collect_tranforms
 
 
 # File configuration order: Files later in the list override earlier ones.
