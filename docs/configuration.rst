@@ -11,7 +11,7 @@ Configuration files
 
 The following configuration files are loaded, in order:
 
-    - `linecook.default_config`: Package configuration
+    - `linecook.config.core`: Package configuration
     - `~/.linecook/config.py`: User configuration
     - `./.linecook/config.py`: Local configuration
 

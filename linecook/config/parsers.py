@@ -5,7 +5,7 @@ import itertools
 
 from toolz import dicttoolz
 
-from .transforms.core import color_text
+from ..transforms.core import color_text
 
 
 TRANSFORM_PARSERS = {}
