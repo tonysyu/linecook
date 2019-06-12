@@ -29,6 +29,8 @@ toolz = "^0.9.0"
 
 [tool.poetry.dev-dependencies]
 bumpversion = "*"
+# configparser 3.7.4 causes "`No module named "backport.configparser"` errors.
+configparser = "3.5.*"
 coverage = "*"
 flake8 = "*"
 mock = "*"
