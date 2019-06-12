@@ -23,6 +23,10 @@ Install development requirements::
     cd linecook
     poetry install
 
+For building the documentation locally, you'll also need to run::
+
+    poetry install --extras "docs"
+
 
 Running tests
 =============

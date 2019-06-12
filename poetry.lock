@@ -1,16 +1,16 @@
 [[package]]
-category = "dev"
+category = "main"
 description = "A configurable sidebar-enabled Sphinx theme"
 name = "alabaster"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.7.12"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "An unobtrusive argparse wrapper with natural syntax"
 name = "argh"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.26.2"
 
@@ -31,10 +31,10 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "19.1.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Internationalization utilities"
 name = "babel"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.7.0"
 
@@ -62,7 +62,7 @@ python-versions = "*"
 version = "0.5.3"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
 optional = false
@@ -70,7 +70,7 @@ python-versions = "*"
 version = "2019.3.9"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Universal encoding detector for Python 2 and 3"
 name = "chardet"
 optional = false
@@ -78,7 +78,7 @@ python-versions = "*"
 version = "3.0.4"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Cross-platform colored terminal text."
 marker = "sys_platform == \"win32\""
 name = "colorama"
@@ -87,7 +87,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "0.4.1"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "This library brings the updated configparser from Python 3.5 to Python 2.6-3.5."
 name = "configparser"
 optional = false
@@ -120,7 +120,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*, <4"
 version = "4.5.3"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Docutils -- Python Documentation Utilities"
 name = "docutils"
 optional = false
@@ -206,7 +206,7 @@ python-versions = "*"
 version = "0.15.2"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
 optional = false
@@ -214,10 +214,10 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.8"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Getting image size from png/jpeg/jpeg2000/gif file"
 name = "imagesize"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "1.1.0"
 
@@ -227,24 +227,24 @@ description = "Read metadata from Python packages"
 name = "importlib-metadata"
 optional = false
 python-versions = ">=2.7,!=3.0,!=3.1,!=3.2,!=3.3"
-version = "0.17"
+version = "0.18"
 
 [package.dependencies]
 zipp = ">=0.5"
 
 [package.dependencies.configparser]
 python = "<3"
-version = "*"
+version = ">=3.5"
 
 [package.dependencies.contextlib2]
 python = "<3"
 version = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "A small but fast and easy to use stand-alone template engine written in pure python."
 name = "jinja2"
-optional = false
+optional = true
 python-versions = "*"
 version = "2.10.1"
 
@@ -252,10 +252,10 @@ version = "2.10.1"
 MarkupSafe = ">=0.23"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python LiveReload is an awesome tool for web developers"
 name = "livereload"
-optional = false
+optional = true
 python-versions = "*"
 version = "2.6.1"
 
@@ -264,10 +264,10 @@ six = "*"
 tornado = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Safely add untrusted strings to HTML/XML markup."
 name = "markupsafe"
-optional = false
+optional = true
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 version = "1.1.1"
 
@@ -316,7 +316,7 @@ python-versions = ">=3.4"
 version = "7.0.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Core utilities for Python packages"
 name = "packaging"
 optional = false
@@ -344,10 +344,10 @@ python = "<3.5"
 version = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "File system general utilities"
 name = "pathtools"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.1.2"
 
@@ -371,10 +371,10 @@ version = "0.12.0"
 importlib-metadata = ">=0.12"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "A collection of helpful Python tools!"
 name = "pockets"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.7.2"
 
@@ -382,10 +382,10 @@ version = "0.7.2"
 six = ">=1.5.2"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Utility that helps with local TCP ports managment. It can find an unused TCP localhost port and remember the association."
 name = "port-for"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.3.1"
 
@@ -414,7 +414,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.1.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Pygments is a syntax highlighting package written in Python."
 name = "pygments"
 optional = false
@@ -422,7 +422,7 @@ python-versions = "*"
 version = "2.3.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Pygments is a syntax highlighting package written in Python."
 name = "pygments"
 optional = false
@@ -430,7 +430,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "2.4.2"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python parsing module"
 name = "pyparsing"
 optional = false
@@ -443,7 +443,7 @@ description = "pytest: simple powerful testing with Python"
 name = "pytest"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "4.6.2"
+version = "4.6.3"
 
 [package.dependencies]
 atomicwrites = ">=1.0"
@@ -510,18 +510,18 @@ pytest = ">=2.9"
 termcolor = ">=1.1.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "World timezone definitions, modern and historical"
 name = "pytz"
-optional = false
+optional = true
 python-versions = "*"
 version = "2019.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "YAML parser and emitter for Python"
 name = "pyyaml"
-optional = false
+optional = true
 python-versions = "*"
 version = "5.1.1"
 
@@ -540,7 +540,7 @@ docutils = ">=0.13.1"
 six = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python HTTP for Humans."
 name = "requests"
 optional = false
@@ -554,7 +554,7 @@ idna = ">=2.5,<2.9"
 urllib3 = ">=1.21.1,<1.25"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python HTTP for Humans."
 name = "requests"
 optional = false
@@ -588,7 +588,7 @@ python-versions = "*"
 version = "1.10.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python 2 and 3 compatibility utilities"
 name = "six"
 optional = false
@@ -596,18 +596,18 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*"
 version = "1.12.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "This package provides 16 stemmer algorithms (15 + Poerter English stemmer) generated from Snowball algorithms."
 name = "snowballstemmer"
-optional = false
+optional = true
 python-versions = "*"
 version = "1.2.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python documentation generator"
 name = "sphinx"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "1.8.5"
 
@@ -631,10 +631,10 @@ python = "<3.5"
 version = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Watch a Sphinx directory and rebuild the documentation when a change is detected. Also includes a livereload enabled web server."
 name = "sphinx-autobuild"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.7.1"
 
@@ -648,10 +648,10 @@ tornado = ">=3.2"
 watchdog = ">=0.7.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Sphinx \"napoleon\" extension."
 name = "sphinxcontrib-napoleon"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.7"
 
@@ -660,10 +660,10 @@ pockets = ">=0.3"
 six = ">=1.5.2"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Sphinx API for Web Apps"
 name = "sphinxcontrib-websupport"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "1.1.2"
 
@@ -684,10 +684,10 @@ python-versions = "*"
 version = "0.9.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
 name = "tornado"
-optional = false
+optional = true
 python-versions = ">= 2.7, !=3.0.*, !=3.1.*, !=3.2.*, != 3.3.*"
 version = "5.1.1"
 
@@ -716,7 +716,7 @@ setuptools = ">=0.7.0"
 tqdm = ">=4.14"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Type Hints for Python"
 marker = "python_version < \"3.5\""
 name = "typing"
@@ -725,7 +725,7 @@ python-versions = "*"
 version = "3.6.6"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 name = "urllib3"
 optional = false
@@ -733,7 +733,7 @@ python-versions = "*"
 version = "1.22"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 name = "urllib3"
 optional = false
@@ -741,10 +741,10 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4"
 version = "1.25.3"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Filesystem events monitoring"
 name = "watchdog"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.9.0"
 
@@ -775,7 +775,7 @@ description = "A built-package format for Python."
 name = "wheel"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "0.31.1"
+version = "0.33.4"
 
 [[package]]
 category = "dev"
@@ -785,8 +785,11 @@ optional = false
 python-versions = ">=2.7"
 version = "0.5.1"
 
+[extras]
+docs = ["sphinx", "sphinx-autobuild", "sphinxcontrib-napoleon"]
+
 [metadata]
-content-hash = "8a7ddcb411174571a697ff2f550271b4eca034890aa7b189d99018bf12e76ad8"
+content-hash = "e110a69bb988eb25d6cef6e4d00ad551ce46fa9855ffe17240f88dafc0ec6e80"
 python-versions = "*"
 
 [metadata.hashes]
@@ -812,7 +815,7 @@ functools32 = ["89d824aa6c358c421a234d7f9ee0bd75933a67c29588ce50aaa3acdf4d403fa0
 future = ["3d3b193f20ca62ba7d8782589922878820d0a023b885882deec830adbf639b97"]
 idna = ["c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407", "ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"]
 imagesize = ["3f349de3eb99145973fefb7dbe38554414e5c30abd0c8e4b970a7c9d09f3a1d8", "f3832918bc3c66617f92e35f5d70729187676313caa60c187eb0f28b8fe5e3b5"]
-importlib-metadata = ["a9f185022cfa69e9ca5f7eabfd5a58b689894cb78a11e3c8c89398a8ccbb8e7f", "df1403cd3aebeb2b1dcd3515ca062eecb5bd3ea7611f18cba81130c68707e879"]
+importlib-metadata = ["6dfd58dfe281e8d240937776065dd3624ad5469c835248219bd16cf2e12dbeb7", "cb6ee23b46173539939964df59d3d72c3e0c1b5d54b84f1d8a7e912fe43612db"]
 jinja2 = ["065c4f02ebe7f7cf559e49ee5a95fb800a9e4528727aec6f24402a5374c65013", "14dd6caf1527abb21f08f86c784eac40853ba93edb79552aa1e4b8aef1b61c7b"]
 livereload = ["78d55f2c268a8823ba499305dcac64e28ddeb9a92571e12d543cd304faf5817b", "89254f78d7529d7ea0a3417d224c34287ebfe266b05e67e51facaf82c27f0f66"]
 markupsafe = ["00bc623926325b26bb9605ae9eae8a215691f33cae5df11ca5424f06f2d1f473", "09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161", "09c4b7f37d6c648cb13f9230d847adf22f8171b1ccc4d5682398e77f40309235", "1027c282dad077d0bae18be6794e6b6b8c91d58ed8a8d89a89d59693b9131db5", "24982cc2533820871eba85ba648cd53d8623687ff11cbb805be4ff7b4c971aff", "29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b", "43a55c2930bbc139570ac2452adf3d70cdbb3cfe5912c71cdce1c2c6bbd9c5d1", "46c99d2de99945ec5cb54f23c8cd5689f6d7177305ebff350a58ce5f8de1669e", "500d4957e52ddc3351cabf489e79c91c17f6e0899158447047588650b5e69183", "535f6fc4d397c1563d08b88e485c3496cf5784e927af890fb3c3aac7f933ec66", "62fe6c95e3ec8a7fad637b7f3d372c15ec1caa01ab47926cfdf7a75b40e0eac1", "6dd73240d2af64df90aa7c4e7481e23825ea70af4b4922f8ede5b9e35f78a3b1", "717ba8fe3ae9cc0006d7c451f0bb265ee07739daf76355d06366154ee68d221e", "79855e1c5b8da654cf486b830bd42c06e8780cea587384cf6545b7d9ac013a0b", "7c1699dfe0cf8ff607dbdcc1e9b9af1755371f92a68f706051cc8c37d447c905", "88e5fcfb52ee7b911e8bb6d6aa2fd21fbecc674eadd44118a9cc3863f938e735", "8defac2f2ccd6805ebf65f5eeb132adcf2ab57aa11fdf4c0dd5169a004710e7d", "98c7086708b163d425c67c7a91bad6e466bb99d797aa64f965e9d25c12111a5e", "9add70b36c5666a2ed02b43b335fe19002ee5235efd4b8a89bfcf9005bebac0d", "9bf40443012702a1d2070043cb6291650a0841ece432556f784f004937f0f32c", "ade5e387d2ad0d7ebf59146cc00c8044acbd863725f887353a10df825fc8ae21", "b00c1de48212e4cc9603895652c5c410df699856a2853135b3967591e4beebc2", "b1282f8c00509d99fef04d8ba936b156d419be841854fe901d8ae224c59f0be5", "b2051432115498d3562c084a49bba65d97cf251f5a331c64a12ee7e04dacc51b", "ba59edeaa2fc6114428f1637ffff42da1e311e29382d81b339c1817d37ec93c6", "c8716a48d94b06bb3b2524c2b77e055fb313aeb4ea620c8dd03a105574ba704f", "cd5df75523866410809ca100dc9681e301e3c27567cf498077e8551b6d20e42f", "e249096428b3ae81b08327a63a485ad0878de3fb939049038579ac0ef61e17e7"]
@@ -831,7 +834,7 @@ pycodestyle = ["95a2219d12372f05704562a14ec30bc76b05a5b297b21a5dfe3f6fac3491ae56
 pyflakes = ["17dbeb2e3f4d772725c777fabc446d5634d1038f234e77343108ce445ea69ce0", "d976835886f8c5b31d47970ed689944a0262b5f3afa00a5a7b4dc81e5449f8a2"]
 pygments = ["5ffada19f6203563680669ee7f53b64dabbeb100eb51b61996085e99c03b284a", "e8218dd399a61674745138520d0d4cf2621d7e032439341bc3f647bff125818d", "71e430bc85c88a430f000ac1d9b331d2407f681d6f6aec95e8bcfbc3df5b0127", "881c4c157e45f30af185c1ffe8d549d48ac9127433f2c380c24b84572ad66297"]
 pyparsing = ["1873c03321fc118f4e9746baf201ff990ceb915f433f23b395f5580d1840cb2a", "9b6323ef4ab914af344ba97510e966d64ba91055d6b9afa6b30799340e89cc03"]
-pytest = ["6032845e68a17a96e8da3088037f899b56357769a724122056265ca2ea1890ee", "bea27a646a3d74cbbcf8d3d4a06b2dfc336baf3dc2cc85cf70ad0157e73e8322"]
+pytest = ["4a784f1d4f2ef198fe9b7aef793e9fa1a3b2f84e822d9b3a64a181293a572d45", "926855726d8ae8371803f7b2e6ec0a69953d9c6311fa7c3b6c1b929ff92d27da"]
 pytest-cov = ["2b097cde81a302e1047331b48cadacf23577e431b61e9c6f49a1170bbe3d3da6", "e00ea4fdde970725482f1f35630d12f074e121a23801aabf2ae154ec6bdd343a"]
 pytest-flake8 = ["4d225c13e787471502ff94409dcf6f7927049b2ec251c63b764a4b17447b60c0", "d7e2b6b274a255b7ae35e9224c85294b471a83b76ecb6bd53c337ae977a499af"]
 pytest-sugar = ["26cf8289fe10880cbbc130bd77398c4e6a8b936d8393b116a5c16121d95ab283", "fcd87a74b2bce5386d244b49ad60549bfbc4602527797fac167da147983f58ab"]
@@ -857,5 +860,5 @@ urllib3 = ["06330f386d6e4b195fbfc736b297f58c5a892e4440e54d294d7004e3a9bbea1b", "
 watchdog = ["965f658d0732de3188211932aeb0bb457587f04f63ab4c1e33eab878e9de961d"]
 wcwidth = ["3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e", "f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c"]
 webencodings = ["a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78", "b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"]
-wheel = ["0a2e54558a0628f2145d2fc822137e322412115173e8a2ddbe1c9024338ae83c", "80044e51ec5bbf6c894ba0bc48d26a8c20a9ba629f4ca19ea26ecfcf87685f5f"]
+wheel = ["5e79117472686ac0c4aef5bad5172ea73a1c2d1646b808c35926bd26bdfb0c08", "62fcfa03d45b5b722539ccbc07b190e4bfff4bb9e3a4d470dd9f6a0981002565"]
 zipp = ["8c1019c6aad13642199fbe458275ad6a84907634cc9f0989877ccc4a2840139d", "ca943a7e809cc12257001ccfb99e3563da9af99d52f261725e96dfe0f9275bc3"]

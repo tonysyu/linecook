@@ -16,6 +16,9 @@ linecook: Prepare lines of text for easy consumption
 .. image:: https://readthedocs.org/projects/linecook/badge/
    :target: https://linecook.readthedocs.io
 
+.. image:: https://badge.fury.io/py/linecook.svg
+    :target: https://badge.fury.io/py/linecook
+
 `linecook` is a command-line tool that transforms lines of text into a form
 that's pleasant to consume.
 
