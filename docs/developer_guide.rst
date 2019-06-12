@@ -2,6 +2,15 @@
 Developer's Guide
 =================
 
+Prerequisites
+=============
+
+The `linecook` package uses `poetry <https://github.com/sdispater/poetry>`_ for
+dependency management and distribution. You call install `poetry` using::
+
+    curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+
+
 Setup
 =====
 
@@ -12,7 +21,7 @@ Clone from github::
 Install development requirements::
 
     cd linecook
-    pip install -e .[dev]
+    poetry install
 
 
 Running tests
