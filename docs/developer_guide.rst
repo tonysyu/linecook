@@ -27,6 +27,10 @@ For building the documentation locally, you'll also need to run::
 
     poetry install --extras "docs"
 
+For local development, you'll also want to install pre-commit hooks using::
+
+    poetry run pre-commit install
+
 
 Running tests
 =============
