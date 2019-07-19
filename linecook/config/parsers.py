@@ -12,7 +12,7 @@ TRANSFORM_PARSERS = {}
 
 TRANSFORM_PARSER_START_ORDER = []
 
-TRANSFORM_PARSER_FINISH_ORDER = ['transforms']
+TRANSFORM_PARSER_FINISH_ORDER = ["transforms"]
 
 
 def register_transform_parser(config_type):
@@ -29,13 +29,15 @@ def register_transform_parser(config_type):
     You can register the a parser with the same name multiple times, which will
     simply override older instances.
     """
+
     def decorator(func):
         TRANSFORM_PARSERS[config_type] = func
         return func
+
     return decorator
 
 
-@register_transform_parser('colorizers')
+@register_transform_parser("colorizers")
 def parse_colorizers(colorizers_dict_seq):
     """Return dictionary of transforms based on `colorizers` in config_dict.
 
@@ -57,11 +59,13 @@ def parse_colorizers(colorizers_dict_seq):
 
     """
     colorizers_dict = dicttoolz.merge(colorizers_dict_seq)
-    return {key: color_text(color_kwargs)
-            for key, color_kwargs in colorizers_dict.items()}
+    return {
+        key: color_text(color_kwargs)
+        for key, color_kwargs in colorizers_dict.items()
+    }
 
 
-@register_transform_parser('transforms')
+@register_transform_parser("transforms")
 def parse_transforms(transforms_dict_seq):
     """Return dictionary of transforms based on `transforms` in config_dict.
 
@@ -87,7 +91,7 @@ def _iter_parsers():
     config_type_order = itertools.chain(
         TRANSFORM_PARSER_START_ORDER,
         unordered_parsers,
-        TRANSFORM_PARSER_FINISH_ORDER
+        TRANSFORM_PARSER_FINISH_ORDER,
     )
     for config_type in config_type_order:
         parse = TRANSFORM_PARSERS.get(config_type)
@@ -131,9 +135,11 @@ def collect_recipes(config_dicts, transforms_registry):
         transforms_registry (dict): Dictionary containing named transform
             functions. See also `collect_tranforms`, which build this registry.
     """
-    recipe_dict = dicttoolz.merge(get_value_from_each('recipes', config_dicts))
-    return {name: list(resolve_recipe(r, transforms_registry))
-            for name, r in recipe_dict.items()}
+    recipe_dict = dicttoolz.merge(get_value_from_each("recipes", config_dicts))
+    return {
+        name: list(resolve_recipe(r, transforms_registry))
+        for name, r in recipe_dict.items()
+    }
 
 
 def get_value_from_each(key, dict_list):

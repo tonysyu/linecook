@@ -9,14 +9,14 @@ def any_of(*args):
 
         r'(<arg1>|<arg2>|...)'
     """
-    return '({})'.format('|'.join(args))
+    return "({})".format("|".join(args))
 
 
 #: Template string to match text exactly (start-to-end)
-exact_template = r'^{}$'
+exact_template = r"^{}$"
 #: Template string to match text surrounded by word boundaries
-word_template = r'\b{}\b'
-quoted_string_template = r'(?<![{0}\w]){0}[^{0}]*{0}(?![{0}\w])'
+word_template = r"\b{}\b"
+quoted_string_template = r"(?<![{0}\w]){0}[^{0}]*{0}(?![{0}\w])"
 
 
 def exact_match(string):
@@ -40,36 +40,36 @@ def bounded_word(string):
 
 
 #: Pattern matching any text
-anything = r'.*'
+anything = r".*"
 #: Pattern matching any whitespace
-whitespace = r'\s*'
+whitespace = r"\s*"
 #: Pattern matching start of string
-start = r'^'
+start = r"^"
 #: Pattern matching indent at start of string
 indent = start + whitespace
 #: Pattern matching first word
-first_word = indent + r'\w+'
+first_word = indent + r"\w+"
 
 #: Pattern matching floating point number
-num_float = bounded_word(r'[+-]?(\d*[.])?\d+')
+num_float = bounded_word(r"[+-]?(\d*[.])?\d+")
 #: Pattern matching integers
-num_int = bounded_word(r'[+-]?\d')
+num_int = bounded_word(r"[+-]?\d")
 #: Pattern matching integers or floats
 number = any_of(num_int, num_float)
 
 #: Pattern matching a numeric year
-year = r'\d{4}'
+year = r"\d{4}"
 #: Pattern matching a numeric month
-month = r'\d{2}'
+month = r"\d{2}"
 #: Pattern matching a numeric day
-day = r'\d{2}'
+day = r"\d{2}"
 
 #: Pattern matching calendar dates in ISO 8601 format (`YYYY-MM-DD`)
-date = bounded_word(r'{}-{}-{}'.format(year, month, day))
+date = bounded_word(r"{}-{}-{}".format(year, month, day))
 #: Pattern matching numeric time
-time = bounded_word(r'(\d{2}:\d{2}(:\d{2})?)')
+time = bounded_word(r"(\d{2}:\d{2}(:\d{2})?)")
 #: Pattern matching numeric time with milliseconds
-time_ms = bounded_word(r'\d{2}:\d{2}:\d{2}(,|.)\d{3}')
+time_ms = bounded_word(r"\d{2}:\d{2}:\d{2}(,|.)\d{3}")
 
 #: Pattern matching strings surrounded by single-quotes
 single_quoted_strings = quoted_string_template.format("'")
