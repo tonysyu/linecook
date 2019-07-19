@@ -10,19 +10,18 @@ from .parsers import collect_recipes, collect_tranforms
 
 # File configuration order: Files later in the list override earlier ones.
 CONFIG_SEARCH_PATHS = [
-    path.expanduser('~/.linecook/config.py'),
-    path.abspath('./.linecook/config.py'),
+    path.expanduser("~/.linecook/config.py"),
+    path.abspath("./.linecook/config.py"),
 ]
 
 
 DEFAULT_LINECOOK_CONFIG = {
-    'recipes': {
-        'identity': [],  # Recipe that does noting; useful for testing.
-        'default': [],
-
-        'python': recipes.python.recipe,
-        'dpkg.log': recipes.dpkg_log.recipe,
-    },
+    "recipes": {
+        "identity": [],  # Recipe that does noting; useful for testing.
+        "default": [],
+        "python": recipes.python.recipe,
+        "dpkg.log": recipes.dpkg_log.recipe,
+    }
 }
 
 
@@ -46,7 +45,7 @@ class LineCookConfig(object):
 
 def _load_config_file_from_path(path):
     try:
-        module = imp.load_source('linecook_custom_config', path)
+        module = imp.load_source("linecook_custom_config", path)
         return module.LINECOOK_CONFIG
     except (IOError, OSError):
         return {}
@@ -109,6 +108,8 @@ def load_config():
     in the first config file, but preseved the `'logs'` value.
     """
     config_dicts = [DEFAULT_LINECOOK_CONFIG]
-    config_dicts.extend(_load_config_file_from_path(file_path)
-                        for file_path in CONFIG_SEARCH_PATHS)
+    config_dicts.extend(
+        _load_config_file_from_path(file_path)
+        for file_path in CONFIG_SEARCH_PATHS
+    )
     return LineCookConfig(config_dicts)

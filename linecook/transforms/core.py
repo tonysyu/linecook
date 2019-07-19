@@ -72,7 +72,7 @@ def partition(match_pattern, on_match=None, on_mismatch=None):
         if i_start < len(string):
             substrings.append(on_mismatch(string[i_start:]))
 
-        return ''.join(substrings)
+        return "".join(substrings)
 
     return transform
 
@@ -102,16 +102,20 @@ def _create_color_replacement(color=None, on_color=None, attrs=None):
         attrs (str): Text attributes. Any of the following values:
             bold, dark, underline, blink, reverse, concealed.
     """
+
     def color_replacement(match_string):
-        if hasattr(match_string, 'group'):
+        if hasattr(match_string, "group"):
             match_string = match_string.group()
-        return colored(match_string, color=color,
-                       on_color=on_color, attrs=attrs)
+        return colored(
+            match_string, color=color, on_color=on_color, attrs=attrs
+        )
+
     return color_replacement
 
 
-def color_text(match_pattern=patterns.anything,
-               color=None, on_color=None, attrs=None):
+def color_text(
+    match_pattern=patterns.anything, color=None, on_color=None, attrs=None
+):
     """Return color transform that returns colorized version of input string.
 
     Args:
@@ -125,7 +129,7 @@ def color_text(match_pattern=patterns.anything,
             bold, dark, underline, blink, reverse, concealed.
     """
     color_replacement = _create_color_replacement(
-        color=color, on_color=on_color, attrs=attrs,
+        color=color, on_color=on_color, attrs=attrs
     )
     return replace_text(match_pattern, replacement=color_replacement)
 
@@ -133,9 +137,12 @@ def color_text(match_pattern=patterns.anything,
 class CountLines(object):
     """Tranformation returning line of text with line count added."""
 
-    def __init__(self, line_template='{count_label} {line}',
-                 count_template='{count:>3}:',
-                 color_kwargs={'color': 'grey', 'attrs': ['bold']}):
+    def __init__(
+        self,
+        line_template="{count_label} {line}",
+        count_template="{count:>3}:",
+        color_kwargs={"color": "grey", "attrs": ["bold"]},
+    ):
         self.count = 0
         self.line_template = line_template
         self.count_template = count_template
@@ -151,5 +158,5 @@ class CountLines(object):
         self.count = 0
 
 
-delete_text = functools.partial(replace_text, replacement='')
+delete_text = functools.partial(replace_text, replacement="")
 split_on = functools.partial(replace_text, replacement=os.linesep)

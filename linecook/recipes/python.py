@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 """
 Example of linecook recipe for python code.
@@ -24,10 +23,10 @@ PYTHON_KEYWORDS = (
 recipe = [
     partition(
         patterns.strings,
-        on_match=color_text('.*', color='yellow'),
+        on_match=color_text(".*", color="yellow"),
         on_mismatch=compose(
-            color_text(PYTHON_KEYWORDS, color='red'),
-            color_text(patterns.number, color='cyan'),
+            color_text(PYTHON_KEYWORDS, color="red"),
+            color_text(patterns.number, color="cyan"),
         ),
     ),
     CountLines(),

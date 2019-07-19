@@ -6,18 +6,19 @@ import re
 from . import patterns
 
 
-TYPE_PREFIX_SEPARATOR = ':'
+TYPE_PREFIX_SEPARATOR = ":"
 
 REGEX_WRAPPERS = {
-    'exact': patterns.exact_template,
-    'word': patterns.word_template,
+    "exact": patterns.exact_template,
+    "word": patterns.word_template,
 }
 
-COMPILED_REGEX_TYPE = type(re.compile('^$'))
+COMPILED_REGEX_TYPE = type(re.compile("^$"))
 
 
-def create_regex_factory(format_string=None, regex_type=None,
-                         ignore_case=False):
+def create_regex_factory(
+    format_string=None, regex_type=None, ignore_case=False
+):
     """Return a `create_regex` function that compiles a pattern to a regex."""
     if regex_type:
         format_string = REGEX_WRAPPERS.get(regex_type)
@@ -29,9 +30,12 @@ def create_regex_factory(format_string=None, regex_type=None,
         flags |= re.IGNORECASE
 
     if format_string:
+
         def create_regex(pattern):
             return re.compile(format_string.format(pattern), flags=flags)
+
     else:
+
         def create_regex(pattern):
             return re.compile(pattern, flags=flags)
 
@@ -39,20 +43,23 @@ def create_regex_factory(format_string=None, regex_type=None,
 
 
 REGEX_FORMATTERS = {
-    'exact': create_regex_factory(regex_type='exact'),
-    'iexact': create_regex_factory(regex_type='exact', ignore_case=True),
-    'word': create_regex_factory(regex_type='word'),
-    'iword': create_regex_factory(regex_type='word', ignore_case=True),
+    "exact": create_regex_factory(regex_type="exact"),
+    "iexact": create_regex_factory(regex_type="exact", ignore_case=True),
+    "word": create_regex_factory(regex_type="word"),
+    "iword": create_regex_factory(regex_type="word", ignore_case=True),
 }
 
-REGEX_FORMATTERS.update({
-    alias: REGEX_FORMATTERS[key] for alias, key in [
-        ('x', 'exact'),
-        ('xi', 'iexact'),
-        ('w', 'word'),
-        ('wi', 'iword'),
-    ]
-})
+REGEX_FORMATTERS.update(
+    {
+        alias: REGEX_FORMATTERS[key]
+        for alias, key in [
+            ("x", "exact"),
+            ("xi", "iexact"),
+            ("w", "word"),
+            ("wi", "iword"),
+        ]
+    }
+)
 
 
 def resolve_match_pattern(pattern):

@@ -7,7 +7,6 @@ from linecook.transforms import parse
 
 
 class TestJsonFromQS:
-
     def test_single_values(self):
         to_json = parse.json_from_qs()
         assert json.loads(to_json("a=1&b=2")) == {"a": "1", "b": "2"}

@@ -27,6 +27,18 @@ For building the documentation locally, you'll also need to run::
 
     poetry install --extras "docs"
 
+Development
+===========
+
+For local development, you'll also want to install pre-commit hooks using::
+
+    poetry run pre-commit install
+
+By default, this will run the black code formatter on *changed* files on every
+commit. To run black on all files::
+
+    poetry run pre-commit run --all-files
+
 
 Running tests
 =============
